@@ -1,4 +1,3 @@
-import 'dart:developer' as developer;
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -39,7 +38,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
 
   void _onScroll() {
     // Solo cambiar el estado cuando se alcance exactamente el snap size
-      // developer.log(_scrollController.size.toString());
     if (_scrollController.size >= 0.92 && !_isExpanded) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
@@ -114,52 +112,59 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
               left: 0,
               right: 0,
               height: size.height * 0.45,
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60), bottomRight: Radius.circular(60)),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    // Imagen
-                    Image.network(
-                      widget.imageUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: AppColors.grey300,
-                          child: const Center(child: Icon(Icons.image, size: 48, color: AppColors.grey500)),
-                        );
-                      },
-                    ),
-                    // Texto con glassmorphism
-                    Positioned(
-                      left: 24,
-                      right: 24,
-                      bottom: 24,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(60),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.2),
-                              borderRadius: BorderRadius.circular(24),
-                              border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1),
-                            ),
-                            child: Text(
-                              widget.text,
-                              style: AppTypography.bodyMedium.copyWith(
-                                color: Colors.white,
-                                height: 1.5,
-                                fontWeight: FontWeight.w500,
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 20, offset: const Offset(0, 10)),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60), bottomRight: Radius.circular(60)),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      // Imagen
+                      Image.network(
+                        widget.imageUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: AppColors.grey300,
+                            child: const Center(child: Icon(Icons.image, size: 48, color: AppColors.grey500)),
+                          );
+                        },
+                      ),
+                      // Texto con glassmorphism
+                      Positioned(
+                        left: 24,
+                        right: 24,
+                        bottom: 24,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(60),
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.2),
+                                borderRadius: BorderRadius.circular(24),
+                                border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1),
                               ),
-                              textAlign: TextAlign.center,
+                              child: Text(
+                                widget.text,
+                                style: AppTypography.bodyMedium.copyWith(
+                                  color: Colors.white,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
