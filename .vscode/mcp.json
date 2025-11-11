@@ -1,0 +1,16 @@
+{
+   // Zaia App - MCP Configuration
+   // Figma Project: https://www.figma.com/design/DePsSadNq9CKSGwldrgWCt/Zaia-app?node-id=603-3289
+   // File Key: DePsSadNq9CKSGwldrgWCt
+   // Card Screen Node ID: 603:3289
+   // Framework: Flutter (Dart)
+   // Organization: Full Dev Plan (APPSYNC)
+   
+   "inputs": [],
+   "servers": {
+     "figma": {
+       "url": "https://mcp.figma.com/mcp",
+       "type": "http"
+     }
+   }
+ }

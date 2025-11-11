@@ -1,0 +1,13 @@
+{
+    "chat.mcp.serverSampling": {
+        "zaia_app/.vscode/mcp.json: figma": {
+            "allowedModels": [
+                "copilot/claude-sonnet-4",
+                "copilot/claude-sonnet-4.5",
+                "copilot/gpt-4.1",
+                "copilot/gpt-5"
+            ]
+        }
+    },
+    "svg.preview.background": "transparent"
+}
