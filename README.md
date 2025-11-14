@@ -24,25 +24,25 @@
 
 ZAIA es una aplicación móvil de bienestar diseñada para ayudar a los usuarios a desarrollar y mantener hábitos saludables a través de retos diarios personalizados. La aplicación combina un diseño moderno y minimalista con funcionalidades intuitivas para hacer del autocuidado una experiencia agradable.
 
+### ✨ Características Principales
+
 - 🎨 **Sistema de diseño completo** extraído desde Figma
-
-### ✨ Características Principales- 🏠 **Home Screen funcional** con 5 componentes customizados
-
-- 📚 **11 widgets reutilizables** para toda la app
-
-- 🎯 **Retos Diarios Personalizados**: Desafíos adaptativos basados en tus objetivos- 🌈 **Paleta de colores** con 50+ definiciones
-
-- 📊 **Seguimiento de Progreso**: Visualiza tu evolución día a día- 📝 **Tipografía Inter** con 15+ estilos predefinidos
-
-- 🎨 **Diseño Minimalista**: Interfaz limpia con paleta de colores calmante- 📱 **Material Design 3** totalmente configurado
-
-- 🌓 **Modo Claro/Oscuro**: Adaptación automática según preferencias- 📖 **Documentación exhaustiva** (~2,200 líneas)
-
+- 🏠 **Home Screen funcional** con 5 componentes customizados
+- 🔍 **Search Screen** con historial de búsquedas recientes
+- � **11 widgets reutilizables** para toda la app
+- 🌈 **Paleta de colores** con 50+ definiciones
+- 📝 **Tipografía Inter** con 15+ estilos predefinidos
+- 📱 **Material Design 3** totalmente configurado
+- 📖 **Documentación exhaustiva** (~2,200 líneas)
+- 🎯 **Retos Diarios Personalizados**: Desafíos adaptativos basados en tus objetivos
+- 📊 **Seguimiento de Progreso**: Visualiza tu evolución día a día
+- 🎨 **Diseño Minimalista**: Interfaz limpia con paleta de colores calmante
+- 🌓 **Modo Claro/Oscuro**: Adaptación automática según preferencias
 - 📱 **Navegación Fluida**: Transiciones suaves y animaciones naturales
-
-- 🔔 **Notificaciones Inteligentes**: Recordatorios personalizados---
-
+- 🔔 **Notificaciones Inteligentes**: Recordatorios personalizados
 - 💾 **Sincronización en la Nube**: Tus datos siempre disponibles
+
+---
 
 ## 🚀 Inicio Rápido
 

@@ -8,6 +8,8 @@ import 'widgets/category_chip.dart';
 import 'widgets/trending_category.dart';
 import 'widgets/promotional_banner.dart';
 import '../card/card_detail_screen.dart';
+import '../search/search_screen.dart';
+import '../notifications/notifications_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -90,25 +92,25 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'name': 'Mindfulness',
       'newsCount': 25,
-      'color': const Color(0xFF9B7CB6), // Amethyst
+      'color': const Color(0xFF9B7CB6),
       'urlImage': 'https://images.unsplash.com/photo-1591228127791-8e2eaef098d3?w=400',
     },
     {
       'name': 'Estrés',
       'newsCount': 46,
-      'color': const Color(0xFFF5D547), // Citrine
+      'color': const Color(0xFFF5D547),
       'urlImage': 'https://images.unsplash.com/photo-1674156423391-a65ab2a435de?w=400',
     },
     {
       'name': 'Sueño',
       'newsCount': 12,
-      'color': const Color(0xFF4A5F8C), // Sodalite
+      'color': const Color(0xFF4A5F8C),
       'urlImage': 'https://images.unsplash.com/photo-1453227588063-bb302b62f50b?w=400',
     },
     {
       'name': 'Ansiedad',
       'newsCount': 108,
-      'color': const Color(0xFFC8844F), // Tiger Eye
+      'color': const Color(0xFFC8844F),
       'urlImage': 'https://images.unsplash.com/photo-1595178156906-2396ef837b0f?w=400',
     },
   ];
@@ -125,12 +127,16 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: IconifyIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.grey800),
             style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-            onPressed: () => {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
+            },
           ),
           IconButton(
             icon: IconifyIcon(icon: 'iconamoon:notification-thin', color: AppColors.grey800),
             style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-            onPressed: () => {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationsScreen()));
+            },
           ),
         ],
       ),

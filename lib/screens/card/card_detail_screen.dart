@@ -152,7 +152,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                               ),
                               child: Text(
                                 widget.text,
-                                style: AppTypography.bodyMedium.copyWith(
+                                style: AppTypography.bodyLarge.copyWith(
                                   color: Colors.white,
                                   height: 1.5,
                                   fontWeight: FontWeight.w500,
@@ -220,7 +220,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
               if (_isExpanded) {
                 // Modo expandido: imagen fija arriba, contenido scrolleable abajo
                 return Column(
-                  children: [
+                  children: [ 
                     // Espacio fijo para la imagen de fondo
                     SizedBox(height: size.height * 0.40),
                     // Contenido scrolleable
