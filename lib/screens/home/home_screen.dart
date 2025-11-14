@@ -3,13 +3,12 @@ import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_typography.dart';
 import '../../theme/app_constants.dart';
+import '../../widgets/common_app_bar.dart';
 import 'widgets/inspiration_card.dart';
 import 'widgets/category_chip.dart';
 import 'widgets/trending_category.dart';
 import 'widgets/promotional_banner.dart';
 import '../card/card_detail_screen.dart';
-import '../search/search_screen.dart';
-import '../notifications/notifications_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -118,28 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home', style: AppTypography.headlineLarge),
-        backgroundColor: AppColors.background,
-        elevation: 0,
-        actionsPadding: const EdgeInsets.only(right: AppSpacing.sm),
-        actions: [
-          IconButton(
-            icon: IconifyIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.grey800),
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
-            },
-          ),
-          IconButton(
-            icon: IconifyIcon(icon: 'iconamoon:notification-thin', color: AppColors.grey800),
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationsScreen()));
-            },
-          ),
-        ],
-      ),
+      backgroundColor: AppColors.background,
+      appBar: const CommonAppBar(title: 'Home'),
       body: SingleChildScrollView(
         child: Column(
           spacing: AppSpacing.lg,

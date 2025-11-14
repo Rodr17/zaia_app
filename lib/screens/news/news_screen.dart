@@ -1,117 +1,210 @@
 import 'package:flutter/material.dart';
-import 'package:iconify_design/iconify_design.dart';
-import 'package:zaia_app/theme/app_typography.dart';
+import '../../models/news_model.dart';
 import '../../theme/app_colors.dart';
-import '../../theme/app_constants.dart';
+import '../../widgets/common_app_bar.dart';
+import 'widgets/featured_news_card.dart';
+import 'widgets/trending_news_card.dart';
 
-class NewsScreen extends StatelessWidget {
+class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final newsItems = [
-      {
-        'title': 'Nueva meditación guiada disponible',
-        'description': 'Descubre nuestra última sesión de mindfulness',
-        'date': 'Hace 2 horas',
-        'image': 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?h=180',
-      },
-      {
-        'title': 'Consejos para dormir mejor',
-        'description': 'Mejora tu descanso con estas técnicas probadas',
-        'date': 'Ayer',
-        'image': 'https://images.unsplash.com/photo-1511988617509-a57c8a288659?h=180',
-      },
-      {
-        'title': 'Beneficios del yoga matutino',
-        'description': 'Comienza tu día con energía y claridad mental',
-        'date': 'Hace 2 días',
-        'image': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?h=180',
-      },
-    ];
+  State<NewsScreen> createState() => _NewsScreenState();
+}
 
+class _NewsScreenState extends State<NewsScreen> {
+  int _selectedCategoryIndex = 0;
+
+  final List<String> _categories = ['Todo', 'Mindfulness', 'Bienestar', 'Espiritualidad', 'Moda', 'Mantenimiento'];
+
+  final List<NewsModel> _featuredNews = [
+    NewsModel(
+      id: '1',
+      title: '3 metodos para aliviar el estrés más rápido',
+      category: 'Bienestar',
+      authorName: 'Alexandra Amezcua',
+      authorAvatar: 'https://i.pravatar.cc/150?img=1',
+      date: '28/12/2024',
+      imageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400',
+      isFavorite: false,
+      isBookmarked: false,
+    ),
+    NewsModel(
+      id: '2',
+      title: '3 metodos para aliviar el estrés más rápido',
+      category: 'Mindfulness',
+      authorName: 'Alexandra Amezcua',
+      authorAvatar: 'https://i.pravatar.cc/150?img=1',
+      date: '28/12/2024',
+      imageUrl: 'https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=400',
+      isFavorite: false,
+      isBookmarked: false,
+    ),
+  ];
+
+  final List<NewsModel> _trendingNews = [
+    NewsModel(
+      id: '3',
+      title: 'Cambia tu rostro con los cambios de la naturaleza',
+      category: 'Espiritualidad',
+      authorName: 'Alexandra Amezcua',
+      authorAvatar: 'https://i.pravatar.cc/150?img=1',
+      date: '31/12/2024',
+      imageUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400',
+    ),
+    NewsModel(
+      id: '4',
+      title: 'Cuidar tu piel después de los 30 es importante',
+      category: 'Bienestar',
+      authorName: 'Alexandra Amezcua',
+      authorAvatar: 'https://i.pravatar.cc/150?img=2',
+      date: '31/12/2024',
+      imageUrl: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400',
+    ),
+    NewsModel(
+      id: '5',
+      title: 'Los 5 estilos de vida que debes llevar a cabo',
+      category: 'Mantenimiento',
+      authorName: 'Carlos Mendoza',
+      authorAvatar: 'https://i.pravatar.cc/150?img=3',
+      date: '31/12/2024',
+      imageUrl: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400',
+    ),
+    NewsModel(
+      id: '6',
+      title: 'Guia completa para vestirte esta temporada',
+      category: 'Moda',
+      authorName: 'Sofia Martinez',
+      authorAvatar: 'https://i.pravatar.cc/150?img=4',
+      date: '31/12/2024',
+      imageUrl: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400',
+    ),
+    NewsModel(
+      id: '7',
+      title: 'Tendencias de moda para el próximo año',
+      category: 'Moda',
+      authorName: 'Isabella Torres',
+      authorAvatar: 'https://i.pravatar.cc/150?img=5',
+      date: '31/12/2024',
+      imageUrl: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: AppColors.background,
-        elevation: 0,
-        title: Text('Noticias', style: AppTypography.headlineLarge),
-        actionsPadding: const EdgeInsets.only(right: AppSpacing.sm),
-        actions: [
-          IconButton(
-            icon: IconifyIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.grey800),
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-            onPressed: () => {},
-          ),
-          IconButton(
-            icon: IconifyIcon(icon: 'iconamoon:notification-thin', color: AppColors.grey800),
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-            onPressed: () => {},
-          ),
-        ],
+      appBar: const CommonAppBar(title: 'Noticias'),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 8),
+            // Selection indicator line
+            Container(
+              margin: const EdgeInsets.only(left: 20),
+              child: Row(
+                children: [
+                  Container(
+                    width: 28,
+                    height: 3,
+                    decoration: BoxDecoration(color: AppColors.grey800, borderRadius: BorderRadius.circular(10)),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            _buildCategories(),
+            _buildFeaturedNews(),
+            const SizedBox(height: 30),
+            _buildTrendingSection(),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
-      body: ListView.separated(
-        padding: EdgeInsets.all(AppSpacing.md),
-        itemCount: newsItems.length,
-        separatorBuilder: (context, index) => SizedBox(height: AppSpacing.md),
+    );
+  }
+
+  Widget _buildCategories() {
+    return Column(
+      children: [
+        SizedBox(
+          height: 40,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            itemCount: _categories.length,
+            separatorBuilder: (context, index) => const SizedBox(width: 20),
+            itemBuilder: (context, index) {
+              final isSelected = index == _selectedCategoryIndex;
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _selectedCategoryIndex = index;
+                  });
+                },
+                child: Text(
+                  _categories[index],
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                    color: isSelected ? AppColors.grey800 : AppColors.textSecondary,
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFeaturedNews() {
+    return SizedBox(
+      height: 180,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        itemCount: _featuredNews.length,
+        separatorBuilder: (context, index) => const SizedBox(width: 20),
         itemBuilder: (context, index) {
-          final item = newsItems[index];
-          return _NewsCard(
-            title: item['title'] as String,
-            description: item['description'] as String,
-            date: item['date'] as String,
-            imageUrl: item['image'] as String,
+          return FeaturedNewsCard(
+            news: _featuredNews[index],
+            onTap: () {
+              // Navigate to news detail
+            },
           );
         },
       ),
     );
   }
-}
 
-class _NewsCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final String date;
-  final String imageUrl;
+  Widget _buildTrendingSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Text('Noticias trending', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+        ),
 
-  const _NewsCard({required this.title, required this.description, required this.date, required this.imageUrl});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(AppBorderRadius.lg)),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(
-            imageUrl,
-            width: double.infinity,
-            height: 180,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                height: 180,
-                color: AppColors.surfaceVariant,
-                child: const Icon(Icons.image_not_supported),
-              );
-            },
-          ),
-          Padding(
-            padding: EdgeInsets.all(AppSpacing.md),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w600)),
-                SizedBox(height: AppSpacing.xs),
-                Text(description, style: AppTypography.bodyMedium.copyWith(color: AppColors.textSecondary)),
-                SizedBox(height: AppSpacing.sm),
-                Text(date, style: AppTypography.bodySmall.copyWith(color: AppColors.textSecondary)),
-              ],
-            ),
-          ),
-        ],
-      ),
+        const SizedBox(height: 7),
+        
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: _trendingNews.length,
+          separatorBuilder: (context, index) => const SizedBox(height: 10),
+          itemBuilder: (context, index) {
+            return TrendingNewsCard(
+              news: _trendingNews[index],
+              onTap: () {
+                // Navigate to news detail
+              },
+            );
+          },
+        ),
+      ],
     );
   }
 }

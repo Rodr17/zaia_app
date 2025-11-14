@@ -3,6 +3,7 @@ import 'package:iconify_design/iconify_design.dart';
 import 'package:zaia_app/theme/app_typography.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_constants.dart';
+import '../../widgets/common_app_bar.dart';
 
 class FaqScreen extends StatelessWidget {
   const FaqScreen({super.key});
@@ -39,24 +40,7 @@ class FaqScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: AppColors.background,
-        elevation: 0,
-        title: Text('Preguntas frecuentes', style: AppTypography.headlineMedium),
-        actionsPadding: const EdgeInsets.only(right: AppSpacing.sm),
-        actions: [
-          IconButton(
-            onPressed: () => {},
-            icon: IconifyIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.grey800),
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-          ),
-          IconButton(
-            onPressed: () => {},
-            icon: IconifyIcon(icon: 'iconamoon:notification-thin', color: AppColors.grey800),
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-          ),
-        ],
-      ),
+      appBar: const CommonAppBar(title: 'Preguntas frecuentes'),
       body: ListView.separated(
         padding: EdgeInsets.all(AppSpacing.md),
         itemCount: faqItems.length,

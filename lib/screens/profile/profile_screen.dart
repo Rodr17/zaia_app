@@ -1,214 +1,243 @@
 import 'package:flutter/material.dart';
 import 'package:iconify_design/iconify_design.dart';
-import 'package:zaia_app/theme/app_typography.dart';
 import '../../theme/app_colors.dart';
-import '../../theme/app_constants.dart';
+import '../../theme/app_typography.dart';
+import '../../models/user_profile_model.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  // Usuario de ejemplo (en producción vendría de un estado global o API)
+  final UserProfileModel _user = UserProfileModel(
+    id: '1',
+    name: 'Yareli García',
+    email: 'yareligarcia@gmail.com',
+    location: 'Monterrey, NL.',
+    profileImageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400',
+    coverImageUrl: 'https://images.unsplash.com/photo-1708347237870-2d007557b7a4?w=800',
+    favoritePhrase:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+    skills: ['Valiente', 'Generosa', 'Honesta', 'Diciplinada', 'Honrada', 'Delicada'],
+    completedChallenges: List.generate(7, (index) => 'challenge_$index'),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: AppColors.background,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: IconifyIcon(icon: 'clarity:edit-line', color: AppColors.grey800),
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-            onPressed: () => {},
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: AppSpacing.lg),
-            // Avatar y nombre
-            Center(
-              child: Column(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(colors: [AppColors.primary, AppColors.secondary]),
-                    ),
-                    child: const Icon(Icons.person, size: 50, color: Colors.white),
-                  ),
-                  SizedBox(height: AppSpacing.md),
-                  Text('Usuario', style: AppTypography.headlineSmall.copyWith(fontWeight: FontWeight.w700)),
-                  SizedBox(height: AppSpacing.xs),
-                  Text(
-                    'usuario@ejemplo.com',
-                    style: AppTypography.bodyMedium.copyWith(color: AppColors.textSecondary),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: AppSpacing.xl),
-            // Estadísticas
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: _StatCard(icon: Icons.self_improvement, value: '24', label: 'Sesiones'),
-                  ),
-                  SizedBox(width: AppSpacing.md),
-                  Expanded(
-                    child: _StatCard(icon: Icons.local_fire_department, value: '7', label: 'Días seguidos'),
-                  ),
-                  SizedBox(width: AppSpacing.md),
-                  Expanded(
-                    child: _StatCard(icon: Icons.timer, value: '180', label: 'Minutos'),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: AppSpacing.xl),
-            // Opciones del menú
-            _MenuSection(
-              title: 'Mi Actividad',
-              items: [
-                _MenuItem(icon: Icons.history, title: 'Historial', onTap: () {}),
-                _MenuItem(icon: Icons.favorite_outline, title: 'Favoritos', onTap: () {}),
-                _MenuItem(icon: Icons.emoji_events_outlined, title: 'Logros', onTap: () {}),
-              ],
-            ),
-            SizedBox(height: AppSpacing.lg),
-            _MenuSection(
-              title: 'Configuración',
-              items: [
-                _MenuItem(icon: Icons.notifications_outlined, title: 'Notificaciones', onTap: () {}),
-                _MenuItem(icon: Icons.language, title: 'Idioma', onTap: () {}),
-                _MenuItem(icon: Icons.privacy_tip_outlined, title: 'Privacidad', onTap: () {}),
-              ],
-            ),
-            SizedBox(height: AppSpacing.lg),
-            _MenuSection(
-              title: 'Soporte',
-              items: [
-                _MenuItem(icon: Icons.help_outline, title: 'Ayuda', onTap: () {}),
-                _MenuItem(icon: Icons.info_outline, title: 'Acerca de', onTap: () {}),
-              ],
-            ),
-            SizedBox(height: AppSpacing.xl),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
-              child: OutlinedButton(
-                onPressed: () => {},
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.red,
-                  side: const BorderSide(color: Colors.red),
-                  minimumSize: const Size(double.infinity, 48),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppBorderRadius.lg)),
-                ),
-                child: const Text('Cerrar sesión'),
-              ),
-            ),
-            SizedBox(height: AppSpacing.xl),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _StatCard extends StatelessWidget {
-  final IconData icon;
-  final String value;
-  final String label;
-
-  const _StatCard({required this.icon, required this.value, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(AppSpacing.md),
-      decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(AppBorderRadius.lg)),
-      child: Column(
-        children: [
-          Icon(icon, color: AppColors.primary, size: 28),
-          SizedBox(height: AppSpacing.sm),
-          Text(value, style: AppTypography.titleLarge.copyWith(fontWeight: FontWeight.w700)),
-          SizedBox(height: AppSpacing.xs),
-          Text(
-            label,
-            style: AppTypography.bodySmall.copyWith(color: AppColors.textSecondary),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _MenuSection extends StatelessWidget {
-  final String title;
-  final List<_MenuItem> items;
-
-  const _MenuSection({required this.title, required this.items});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
-          child: Text(
-            title,
-            style: AppTypography.titleSmall.copyWith(fontWeight: FontWeight.w600, color: AppColors.textSecondary),
-          ),
-        ),
-        SizedBox(height: AppSpacing.sm),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: AppSpacing.md),
-          decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(AppBorderRadius.lg)),
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
-            children: items
-                .map(
-                  (item) => Column(
-                    children: [
-                      item,
-                      if (item != items.last) Divider(height: 1, color: AppColors.surfaceVariant),
-                    ],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header con imagen de fondo y avatar
+              _buildHeader(context),
+
+              // 32 foto perfil + 8
+              const SizedBox(height: 40),
+
+              // Nombre
+              Center(
+                child: Text(
+                  _user.name,
+                  style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w600, color: Colors.black),
+                ),
+              ),
+        
+              const SizedBox(height: 4),
+        
+              // Email
+              Center(
+                child: Text(
+                  _user.email,
+                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black),
+                ),
+              ),
+        
+              const SizedBox(height: 5),
+        
+              // Ubicación
+              Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const IconifyIcon(icon: 'weui:location-outlined', size: 16, color: Colors.black),
+                    const SizedBox(width: 4),
+                    Text(
+                      _user.location,
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
+        
+              const SizedBox(height: 14),
+        
+              // Frase favorita
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text('Frase favorita', style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w600)),
+              ),
+        
+              const SizedBox(height: 8),
+        
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  _user.favoritePhrase ?? '',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.black,
+                    height: 1.4,
+                    letterSpacing: 0.24,
                   ),
-                )
-                .toList(),
+                ),
+              ),
+        
+              const SizedBox(height: 32),
+        
+              // Habilidades
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text('Habilidades', style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w600)),
+              ),
+        
+              const SizedBox(height: 12),
+        
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Wrap(
+                  spacing: 10,
+                  runSpacing: 7,
+                  children: _user.skills
+                      .map(
+                        (skill) => Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          decoration: BoxDecoration(color: AppColors.grey200, borderRadius: BorderRadius.circular(12)),
+                          child: Text(
+                            skill,
+                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300, color: Colors.black),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+        
+              const SizedBox(height: 32),
+        
+              // Retos cumplidos
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text('Retos cumplidos', style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w600)),
+              ),
+        
+              const SizedBox(height: 12),
+        
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: _user.completedChallenges
+                      .map(
+                        (challenge) => Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(color: AppColors.grey300, shape: BoxShape.circle),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+        
+              const SizedBox(height: 80), // Espacio para el bottom navigation
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
-}
 
-class _MenuItem extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final VoidCallback onTap;
+  Widget _buildHeader(BuildContext context) {
+    return SizedBox(
+      height: 210,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          // Imagen de fondo del header
+          Container(
+            height: 210,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: AppColors.grey200,
+              image: _user.coverImageUrl != null
+                  ? DecorationImage(image: NetworkImage(_user.coverImageUrl!), fit: BoxFit.cover)
+                  : null,
+            ),
+          ),
 
-  const _MenuItem({required this.icon, required this.title, required this.onTap});
+          // Botones de navegación
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    // Botón de editar
+                    GestureDetector(
+                      onTap: () {
+                        // Acción de editar perfil
+                      },
+                      child: Container(
+                        width: 31,
+                        height: 29,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(color: Color.fromARGB(128, 245, 245, 245), shape: BoxShape.circle),
+                        padding: EdgeInsets.all(1),
+                        child: const IconifyIcon(icon: 'clarity:edit-line', size: 20, color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(AppBorderRadius.lg),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.md),
-        child: Row(
-          children: [
-            Icon(icon, color: AppColors.textSecondary),
-            SizedBox(width: AppSpacing.md),
-            Expanded(child: Text(title, style: AppTypography.bodyLarge)),
-            Icon(Icons.chevron_right, color: AppColors.textSecondary),
-          ],
-        ),
+          // Avatar circular
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: -32,
+            child: Center(
+              child: Container(
+                width: 137,
+                height: 137,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: _user.profileImageUrl != null
+                      ? DecorationImage(image: NetworkImage(_user.profileImageUrl!), fit: BoxFit.cover)
+                      : null,
+                  color: _user.profileImageUrl == null ? AppColors.grey300 : null,
+                ),
+                child: _user.profileImageUrl == null
+                    ? const Icon(Icons.person, size: 60, color: AppColors.grey600)
+                    : null,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
