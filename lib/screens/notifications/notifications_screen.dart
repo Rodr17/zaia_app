@@ -120,7 +120,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           children: [
             // Header
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 25, bottom: AppSpacing.md),
+              padding: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: AppSpacing.md),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -153,12 +153,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               child: (_newNotifications.isEmpty && _previousNotifications.isEmpty)
                   ? _buildEmptyState()
                   : ListView(
-                      padding: const EdgeInsets.only(top: AppSpacing.xs, bottom: AppSpacing.md, left: AppSpacing.xs, right: AppSpacing.xs),
+                      padding: EdgeInsets.only(top: AppSpacing.xs, bottom: AppSpacing.md, left: AppSpacing.xs, right: AppSpacing.xs),
                       children: [
                         // Sección "Nuevas"
                         if (_newNotifications.isNotEmpty) ...[
                           Padding(
-                            padding: const EdgeInsets.only(
+                            padding: EdgeInsets.only(
                               left: AppSpacing.md,
                               right: AppSpacing.md,
                               top: AppSpacing.sm,
@@ -186,7 +186,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         // Sección "Anteriores"
                         if (_previousNotifications.isNotEmpty) ...[
                           Padding(
-                            padding: const EdgeInsets.only(
+                            padding: EdgeInsets.only(
                               left: AppSpacing.md,
                               right: AppSpacing.md,
                               top: AppSpacing.lg,
@@ -221,20 +221,20 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   Widget _buildEmptyState() {
     return Padding(
-      padding: const EdgeInsets.all(AppSpacing.xl),
+      padding: EdgeInsets.all(AppSpacing.xl),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: 120,
             height: 120,
-            padding: const EdgeInsets.all(AppSpacing.md),
+            padding: EdgeInsets.all(AppSpacing.md),
             decoration: const BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
             child: const IconifyIcon(icon: 'iconamoon:notification-thin', size: 60, color: AppColors.grey400),
           ),
-          const SizedBox(height: AppSpacing.lg),
+          SizedBox(height: AppSpacing.lg),
           Text('Sin notificaciones', style: AppTypography.titleLarge, textAlign: TextAlign.center),
-          const SizedBox(height: AppSpacing.sm),
+          SizedBox(height: AppSpacing.sm),
           Text(
             'Todas tus notificaciones aparecerán aquí',
             style: AppTypography.bodyMedium.copyWith(color: AppColors.grey600),

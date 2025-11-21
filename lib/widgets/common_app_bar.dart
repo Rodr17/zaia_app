@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_typography.dart';
@@ -24,27 +25,37 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title, style: AppTypography.headlineLarge),
+      titleSpacing: AppSpacing.screenPadding,
+      title: Text(title, style: AppTypography.displaySmall),
+      centerTitle: false,
       backgroundColor: AppColors.background,
       elevation: 0,
-      actionsPadding: const EdgeInsets.only(right: AppSpacing.sm),
+      actionsPadding: EdgeInsets.only(right: AppSpacing.screenPadding),
       actions: [
-        if (showSearchButton)
-          IconButton(
-            icon: const IconifyIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.grey800),
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
-            },
-          ),
-        if (showNotificationButton)
-          IconButton(
-            icon: const IconifyIcon(icon: 'iconamoon:notification-thin', color: AppColors.grey800),
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationsScreen()));
-            },
-          ),
+        Row(
+          spacing: 9.r,
+          children: [
+            if (showSearchButton)
+              IconButton(
+                padding: EdgeInsets.all(AppBorderRadius.sm),
+                icon: IconifyIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.textPrimary),
+                style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
+                },
+              ),
+        
+            if (showNotificationButton)
+              IconButton(
+                padding: EdgeInsets.all(AppBorderRadius.icon),
+                icon: const IconifyIcon(icon: 'iconamoon:notification-thin', color: AppColors.textPrimary),
+                style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationsScreen()));
+                },
+              ),
+          ],
+        ),
       ],
     );
   }

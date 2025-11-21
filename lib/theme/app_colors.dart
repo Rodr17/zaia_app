@@ -22,7 +22,7 @@ class AppColors {
   static const Color surfaceVariant = Color(0xFFF5F2EF);
   
   // Colores de texto
-  static const Color textPrimary = Color(0xFF2D2926); // Casi negro cálido
+  static const Color textPrimary = Color(0xFF000000); // Casi negro cálido
   static const Color textSecondary = Color(0xFF6B6562);
   static const Color textTertiary = Color(0xFF9E9A97);
   static const Color textOnPrimary = Color(0xFFFFFFFF);

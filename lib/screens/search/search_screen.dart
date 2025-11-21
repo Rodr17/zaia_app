@@ -70,7 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
             // Línea divisoria
             Divider(height: 0.5, color: AppColors.grey300, indent: 19, endIndent: 19),
 
-            const SizedBox(height: AppSpacing.md),
+            SizedBox(height: AppSpacing.md),
 
             // Sección de búsquedas recientes
             Expanded(child: _buildRecentSearches()),
@@ -82,7 +82,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Widget _buildSearchBar() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 25, bottom: AppSpacing.md),
+      padding: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: AppSpacing.md),
       child: Row(
         children: [
           // Botón de regreso
@@ -96,7 +96,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
 
-          const SizedBox(width: AppSpacing.sm),
+          SizedBox(width: AppSpacing.sm),
 
           // Campo de búsqueda
           Expanded(
@@ -179,7 +179,7 @@ class _SearchScreenState extends State<SearchScreen> {
         // Lista de búsquedas recientes
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.sm),
+            padding: EdgeInsets.all(AppSpacing.sm),
             child: ListView.builder(
               padding: EdgeInsets.zero,
               itemCount: _recentSearches.length,
@@ -210,12 +210,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(AppSpacing.sm),
+                padding: EdgeInsets.all(AppSpacing.sm),
                 child: IconifyIcon(icon: 'fluent-mdl2:return-to-session', size: 14),
               ),
             ),
 
-            const SizedBox(width: 12),
+            SizedBox(width: 12),
 
             // Texto de búsqueda
             Expanded(child: Text(searchText, style: AppTypography.bodyMedium.copyWith(fontSize: 18))),

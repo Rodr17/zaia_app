@@ -25,7 +25,7 @@ class PromotionalBanner extends StatelessWidget {
             end: Alignment.bottomCenter,
           ),
         ),
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding: EdgeInsets.all(AppSpacing.md),
         alignment: Alignment.topLeft,
         child: Text(
           '¿Estás listo para nuestros\nnuevos productos?',

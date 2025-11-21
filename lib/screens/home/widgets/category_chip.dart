@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../theme/app_colors.dart';
 import '../../../theme/app_typography.dart';
 
 class CategoryChipWidget extends StatelessWidget {
@@ -15,15 +14,7 @@ class CategoryChipWidget extends StatelessWidget {
       onTap: onTap,
       child: Text(
         label,
-        style: isSelected
-            ? AppTypography.titleMedium.copyWith(
-                fontWeight: FontWeight.w800,
-                color: AppColors.textPrimary,
-              )
-            : AppTypography.titleMedium.copyWith(
-                fontWeight: FontWeight.w400,
-                color: AppColors.grey900,
-              ),
+        style: isSelected ? AppTypography.titleSmall : AppTypography.titleSmall.copyWith(fontWeight: FontWeight.w500),
       ),
     );
   }

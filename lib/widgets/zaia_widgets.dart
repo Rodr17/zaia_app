@@ -33,10 +33,10 @@ class BraceletCard extends StatelessWidget {
 
             // Información
             Container(
-              padding: const EdgeInsets.all(AppSpacing.md),
+              padding: EdgeInsets.all(AppSpacing.md),
               decoration: BoxDecoration(
                 color: AppColors.primary.withValues(alpha: 0.9),
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(AppBorderRadius.card),
                   bottomRight: Radius.circular(AppBorderRadius.card),
                 ),
@@ -75,7 +75,7 @@ class CategoryChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+        padding: EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primary : AppColors.surfaceVariant,
           borderRadius: BorderRadius.circular(AppBorderRadius.chip),
@@ -209,7 +209,7 @@ class NewsCard extends StatelessWidget {
 
             // Contenido
             Padding(
-              padding: const EdgeInsets.all(AppSpacing.md),
+              padding: EdgeInsets.all(AppSpacing.md),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -270,7 +270,7 @@ class TrendingBadge extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.md),
+          padding: EdgeInsets.all(AppSpacing.md),
           child: Row(
             children: [
               CircleAvatar(
@@ -278,7 +278,7 @@ class TrendingBadge extends StatelessWidget {
                 backgroundColor: AppColors.primary.withValues(alpha: 0.1),
                 child: Icon(icon, color: AppColors.primary, size: 28),
               ),
-              const SizedBox(width: AppSpacing.md),
+              SizedBox(width: AppSpacing.md),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

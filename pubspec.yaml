@@ -37,6 +37,7 @@ dependencies:
   iconify_design: ^1.0.1
   go_router: ^14.6.2
   flutter_svg: ^2.2.2
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:
@@ -74,13 +75,25 @@ flutter:
 
   # Fuentes personalizadas
   fonts:
-    - family: Inter
+    - family: Neue Haas Grotesk Display Pro
       fonts:
         # Soporta todos los pesos (100-900) automáticamente
-        - asset: assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf
-          style: italic
-        - asset: assets/fonts/Inter-VariableFont_opsz,wght.ttf
-          style: normal
+        # - asset: assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf
+        #   style: italic
+        # - asset: assets/fonts/Inter-VariableFont_opsz,wght.ttf
+        #   style: normal
+        - asset: assets/fonts/neue-haas-grotesk-display-pro-25-xthin.ttf
+          weight: 200
+        - asset: assets/fonts/neue-haas-grotesk-display-pro-35-thin.ttf
+          weight: 300
+        - asset: assets/fonts/neue-haas-grotesk-display-pro-45-light.ttf
+          weight: 400
+        - asset: assets/fonts/neue-haas-grotesk-display-pro-55-roman.ttf
+          weight: 500
+        - asset: assets/fonts/neue-haas-grotesk-display-pro-65-medium.ttf
+          weight: 600
+        - asset: assets/fonts/neue-haas-grotesk-display-pro-75-bold.ttf
+          weight: 700
 
 flutter_launcher_icons:
   android: true

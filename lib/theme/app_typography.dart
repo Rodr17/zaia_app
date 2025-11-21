@@ -1,185 +1,148 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_colors.dart';
 
 /// Tipografía de la aplicación Zaia extraída desde Figma
 class AppTypography {
   // Familia de fuente principal
-  static const String fontFamily = 'Inter';
+  static const String fontFamily = 'Neue Haas Grotesk Display Pro';
 
   // Display - Para títulos grandes y destacados
-  static const TextStyle displayLarge = TextStyle(
+  static TextStyle displayLarge = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 57,
-    fontWeight: FontWeight.w400,
-    letterSpacing: -0.25,
-    height: 1.12,
+    fontSize: 32.sp,
+    fontWeight: FontWeight.w700,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle displayMedium = TextStyle(
+  static TextStyle displayMedium = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 45,
-    fontWeight: FontWeight.w400,
-    letterSpacing: 0,
-    height: 1.16,
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w700,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle displaySmall = TextStyle(
+  static TextStyle displaySmall = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 36,
-    fontWeight: FontWeight.w400,
-    letterSpacing: 0,
-    height: 1.22,
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w700,
     color: AppColors.textPrimary,
   );
 
   // Headline - Para encabezados de secciones
-  static const TextStyle headlineLarge = TextStyle(
+  static TextStyle headlineLarge = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 32,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w700,
-    letterSpacing: 0,
-    height: 1.25,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle headlineMedium = TextStyle(
+  static TextStyle headlineMedium = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 28,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w700,
-    letterSpacing: 0,
-    height: 1.29,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle headlineSmall = TextStyle(
+  static TextStyle headlineSmall = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 24,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w700,
-    letterSpacing: 0,
-    height: 1.33,
     color: AppColors.textPrimary,
   );
 
   // Title - Para títulos de tarjetas y elementos
-  static const TextStyle titleLarge = TextStyle(
+  static TextStyle titleLarge = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 22,
-    fontWeight: FontWeight.w700,
-    letterSpacing: 0,
-    height: 1.27,
+    fontSize: 22.sp,
+    fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle titleMedium = TextStyle(
+  static TextStyle titleMedium = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
-    fontWeight: FontWeight.w700,
-    letterSpacing: 0.15,
-    height: 1.5,
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle titleSmall = TextStyle(
+  static TextStyle titleSmall = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
-    fontWeight: FontWeight.w700,
-    letterSpacing: 0.1,
-    height: 1.43,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
   );
 
   // Body - Para texto de contenido
-  static const TextStyle bodyLarge = TextStyle(
+  static TextStyle bodyLarge = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w400,
-    letterSpacing: 0.5,
-    height: 1.5,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle bodyMedium = TextStyle(
+  static TextStyle bodyMedium = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
-    letterSpacing: 0.25,
-    height: 1.43,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle bodySmall = TextStyle(
+  static TextStyle bodySmall = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w400,
-    letterSpacing: 0.4,
-    height: 1.33,
     color: AppColors.textSecondary,
   );
 
   // Label - Para botones y elementos interactivos
-  static const TextStyle labelLarge = TextStyle(
+  static TextStyle labelLarge = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.1,
-    height: 1.43,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle labelMedium = TextStyle(
+  static TextStyle labelMedium = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.5,
-    height: 1.33,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle labelSmall = TextStyle(
+  static TextStyle labelSmall = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 11,
+    fontSize: 11.sp,
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.5,
-    height: 1.45,
     color: AppColors.textSecondary,
   );
 
   // Estilos específicos de la app
-  static const TextStyle cardTitle = TextStyle(
+  static TextStyle cardTitle = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w600,
-    letterSpacing: 0,
-    height: 1.33,
     color: AppColors.textOnPrimary,
   );
 
-  static const TextStyle categoryLabel = TextStyle(
+  static TextStyle categoryLabel = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.5,
-    height: 1.43,
     color: AppColors.textSecondary,
   );
 
-  static const TextStyle buttonText = TextStyle(
+  static TextStyle buttonText = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w600,
-    letterSpacing: 0.5,
-    height: 1.25,
     color: AppColors.textOnPrimary,
   );
 
-  static const TextStyle caption = TextStyle(
+  static TextStyle caption = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w400,
-    letterSpacing: 0.4,
-    height: 1.33,
     color: AppColors.textTertiary,
   );
 }

@@ -27,7 +27,7 @@ class TrendingNewsCard extends StatelessWidget {
           children: [
             // Image
             ClipRRect(
-              borderRadius: const BorderRadius.horizontal(left: Radius.circular(AppBorderRadius.lg)),
+              borderRadius: BorderRadius.horizontal(left: Radius.circular(AppBorderRadius.lg)),
               child: Image.network(
                 news.imageUrl,
                 width: 80,

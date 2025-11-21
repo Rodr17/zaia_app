@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_typography.dart';
@@ -120,8 +121,9 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.background,
       appBar: const CommonAppBar(title: 'Home'),
       body: SingleChildScrollView(
+        padding: EdgeInsets.only(left: AppSpacing.screenPadding, bottom: AppSpacing.screenPadding),
         child: Column(
-          spacing: AppSpacing.lg,
+          // spacing: AppSpacing.lg,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [_buildCategories(), _buildInspirationCards(), _buildTrendingSection(), _buildNewsSection()],
         ),
@@ -130,24 +132,56 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildCategories() {
-    return SizedBox(
-      height: 40,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-        itemCount: _categories.length,
-        separatorBuilder: (context, index) => const SizedBox(width: AppSpacing.lg),
-        itemBuilder: (context, index) {
-          return CategoryChipWidget(
-            label: _categories[index],
-            isSelected: _selectedCategoryIndex == index,
-            onTap: () {
-              setState(() {
-                _selectedCategoryIndex = index;
-              });
-            },
-          );
-        },
+    return Container(
+      margin: EdgeInsets.only(top: 15.r, bottom: 15.r),
+      // color: AppColors.accent,
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              width: 40.r,
+              height: 3.r,
+              decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(10.r)),
+            ),
+          ),
+          Container(
+            height: 20.r,
+            margin: EdgeInsets.symmetric(vertical: 10.r),
+            padding: EdgeInsets.symmetric(),
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) => SizedBox(width: 20.r),
+              itemCount: _categories.length,
+              itemBuilder: (context, index) {
+                if (index == _categories.length - 1) {
+                  return Padding(
+                    padding: EdgeInsets.only(right: AppSpacing.screenPadding),
+                    child: CategoryChipWidget(
+                      label: _categories[index],
+                      isSelected: _selectedCategoryIndex == index,
+                      onTap: () {
+                        setState(() {
+                          _selectedCategoryIndex = index;
+                        });
+                      },
+                    ),
+                  );
+                }
+
+                return CategoryChipWidget(
+                  label: _categories[index],
+                  isSelected: _selectedCategoryIndex == index,
+                  onTap: () {
+                    setState(() {
+                      _selectedCategoryIndex = index;
+                    });
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -156,12 +190,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         SizedBox(
-          height: 300,
+          height: 300.r,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+            // padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
             itemCount: _inspirationCards[_categories[_selectedCategoryIndex]]?.length ?? 0,
-            separatorBuilder: (context, index) => const SizedBox(width: 12),
+            separatorBuilder: (context, index) => SizedBox(width: AppSpacing.md),
             itemBuilder: (context, index) {
               final card = _inspirationCards[_categories[_selectedCategoryIndex]]![index];
               final category = _categories[_selectedCategoryIndex];
@@ -194,32 +228,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('En Tendencia', style: AppTypography.titleLarge),
-              Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
-                child: IconButton(
-                  icon: IconifyIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800, size: 32),
-                  padding: EdgeInsets.zero,
-                  onPressed: () => {},
-                  // iconSize: 20,
-                ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('En Tendencia', style: AppTypography.titleLarge),
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
+              child: IconButton(
+                icon: IconifyIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800, size: 32),
+                padding: EdgeInsets.zero,
+                onPressed: () => {},
+                // iconSize: 20,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        const SizedBox(height: AppSpacing.md),
+        SizedBox(height: AppSpacing.md),
         SizedBox(
-          height: 80,
+          height: 80.r,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+            padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
             itemCount: _trendingCategories.length,
             separatorBuilder: (context, index) => const SizedBox(width: 18),
             itemBuilder: (context, index) {
@@ -240,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildNewsSection() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+      padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -260,7 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.md),
+          SizedBox(height: AppSpacing.md),
           const PromotionalBanner(),
         ],
       ),

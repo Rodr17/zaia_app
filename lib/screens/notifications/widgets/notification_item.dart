@@ -14,7 +14,7 @@ class NotificationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      margin: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 8),
+      margin: EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 8),
       child: Row(
         children: [
           // Avatar circular con imagen
@@ -42,7 +42,7 @@ class NotificationItem extends StatelessWidget {
                   ),
           ),
 
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
 
           // Contenido de la notificación
           Expanded(
