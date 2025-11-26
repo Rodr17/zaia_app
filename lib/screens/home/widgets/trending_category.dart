@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_typography.dart';
@@ -24,9 +25,9 @@ class TrendingCategory extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 218,
-        height: 80,
-        decoration: BoxDecoration(color: AppColors.grey200, borderRadius: BorderRadius.circular(40)),
+        width: 218.w,
+        height: 80.h,
+        decoration: BoxDecoration(color: AppColors.grey200, borderRadius: BorderRadius.circular(40.r)),
         child: Stack(
           children: [
             // Avatar Circle
@@ -34,8 +35,8 @@ class TrendingCategory extends StatelessWidget {
               left: 0,
               top: 0,
               child: Container(
-                width: 80,
-                height: 80,
+                width: 80.w,
+                height: 80.h,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
@@ -57,11 +58,11 @@ class TrendingCategory extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(name, style: AppTypography.titleMedium.copyWith(letterSpacing: 0.64, fontWeight: FontWeight.w500)),
-                  const SizedBox(height: 6),
+                  SizedBox(height: 6.h),
                   Row(
                     children: [
-                      IconifyIcon(icon: 'iconamoon:news-thin', color: AppColors.grey800, size: 26),
-                      const SizedBox(width: 4),
+                      IconifyIcon(icon: 'iconamoon:news-thin', color: AppColors.grey800, size: 26.sp),
+                      SizedBox(width: 4.w),
                       Text('$newsCount noticias', style: AppTypography.bodyLarge),
                     ],
                   ),

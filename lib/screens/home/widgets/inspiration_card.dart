@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zaia_app/theme/app_constants.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_typography.dart';
 
@@ -15,26 +17,26 @@ class InspirationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cardContent = Container(
-      width: 200,
-      height: 300,
+      width: 200.w,
+      height: 300.h,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(24.r),
         boxShadow: [BoxShadow(color: AppColors.shadow, blurRadius: 8, offset: const Offset(0, 4))],
       ),
       child: Stack(
         children: [
           // Background Image
           ClipRRect(
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(24.r),
             child: Image.network(
               imageUrl,
-              width: 200,
-              height: 300,
+              width: 200.w,
+              height: 300.h,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   color: AppColors.grey300,
-                  child: const Center(child: Icon(Icons.image, size: 48, color: AppColors.grey500)),
+                  child: Center(child: Icon(Icons.image, size: 48.r, color: AppColors.grey500)),
                 );
               },
             ),
@@ -43,7 +45,7 @@ class InspirationCard extends StatelessWidget {
           // Gradient Overlay
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(24.r),
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -59,21 +61,21 @@ class InspirationCard extends StatelessWidget {
             right: 10,
             bottom: 20,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: BorderRadius.circular(32.r),
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                filter: ImageFilter.blur(sigmaX: 15.w, sigmaY: 15.h),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  padding: EdgeInsets.symmetric(horizontal: AppSpacing.mdW, vertical: AppSpacing.smH),
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(32),
-                    border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1),
+                    borderRadius: BorderRadius.circular(32.r),
+                    border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1.w),
                   ),
                   child: Text(
                     text,
                     style: AppTypography.bodySmall.copyWith(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       height: 1.4,
                       letterSpacing: 0.48,
                     ),

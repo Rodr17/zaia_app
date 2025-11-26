@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_typography.dart';
@@ -68,9 +69,9 @@ class _SearchScreenState extends State<SearchScreen> {
             _buildSearchBar(),
 
             // Línea divisoria
-            Divider(height: 0.5, color: AppColors.grey300, indent: 19, endIndent: 19),
+            Divider(height: 0.5.h, color: AppColors.grey300, indent: 19.w, endIndent: 19.w),
 
-            SizedBox(height: AppSpacing.md),
+            SizedBox(height: AppSpacing.mdH),
 
             // Sección de búsquedas recientes
             Expanded(child: _buildRecentSearches()),
@@ -82,29 +83,29 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Widget _buildSearchBar() {
     return Padding(
-      padding: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: AppSpacing.md),
+      padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 25.h, bottom: AppSpacing.mdH),
       child: Row(
         children: [
           // Botón de regreso
           GestureDetector(
             onTap: () => Navigator.pop(context),
             child: Container(
-              width: 31,
-              height: 29,
+              width: 31.w,
+              height: 29.h,
               alignment: Alignment.center,
-              child: IconifyIcon(icon: 'icon-park-outline:left', color: AppColors.grey800, size: 24),
+              child: IconifyIcon(icon: 'icon-park-outline:left', color: AppColors.grey800, size: 24.sp),
             ),
           ),
 
-          SizedBox(width: AppSpacing.sm),
+          SizedBox(width: AppSpacing.smW),
 
           // Campo de búsqueda
           Expanded(
             child: Container(
-              height: 40,
+              height: 40.h,
               decoration: BoxDecoration(
                 color: AppColors.grey100,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
                 // border: Border.all(color: AppColors.grey300, width: 0.5),
               ),
               child: Row(
@@ -120,24 +121,24 @@ class _SearchScreenState extends State<SearchScreen> {
                         });
                       },
                       style: AppTypography.bodyMedium.copyWith(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         letterSpacing: 0.32,
                         fontWeight: FontWeight.w300,
                       ),
                       decoration: InputDecoration(
                         hintText: 'Buscar',
                         hintStyle: AppTypography.bodyMedium.copyWith(
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           letterSpacing: 0.32,
                           fontWeight: FontWeight.w500,
                           color: AppColors.grey600,
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(32),
-                          borderSide: BorderSide(color: Colors.transparent, width: 0.5),
+                          borderRadius: BorderRadius.circular(32.r),
+                          borderSide: BorderSide(color: Colors.transparent, width: 0.5.w),
                         ),
                         fillColor: AppColors.grey100,
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                       ),
                     ),
                   ),
@@ -150,8 +151,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         });
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: IconifyIcon(icon: 'material-symbols:cancel-outline-rounded', size: 20),
+                        padding: EdgeInsets.only(right: 12.w),
+                        child: IconifyIcon(icon: 'material-symbols:cancel-outline-rounded', size: 20.sp),
                       ),
                     ),
                   // Botón cancelar/limpiar
@@ -170,8 +171,8 @@ class _SearchScreenState extends State<SearchScreen> {
       children: [
         // Título "Recientes"
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Text('Recientes', style: AppTypography.titleLarge.copyWith(fontSize: 20)),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: Text('Recientes', style: AppTypography.titleLarge.copyWith(fontSize: 20.sp)),
         ),
 
         // const SizedBox(height: AppSpacing.xs),
@@ -179,7 +180,7 @@ class _SearchScreenState extends State<SearchScreen> {
         // Lista de búsquedas recientes
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(AppSpacing.sm),
+            padding: EdgeInsets.all(AppSpacing.smW),
             child: ListView.builder(
               padding: EdgeInsets.zero,
               itemCount: _recentSearches.length,
@@ -200,30 +201,30 @@ class _SearchScreenState extends State<SearchScreen> {
         _performSearch(searchText);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 19.w, vertical: 10.h),
         child: Row(
           children: [
             // Ícono de búsqueda anterior (return to session)
             Container(
               decoration: BoxDecoration(
                 color: AppColors.grey300.withValues(alpha: 0.4),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
               ),
               child: Padding(
-                padding: EdgeInsets.all(AppSpacing.sm),
-                child: IconifyIcon(icon: 'fluent-mdl2:return-to-session', size: 14),
+                padding: EdgeInsets.all(AppSpacing.smW),
+                child: IconifyIcon(icon: 'fluent-mdl2:return-to-session', size: 14.sp),
               ),
             ),
 
-            SizedBox(width: 12),
+            SizedBox(width: 12.w),
 
             // Texto de búsqueda
-            Expanded(child: Text(searchText, style: AppTypography.bodyMedium.copyWith(fontSize: 18))),
+            Expanded(child: Text(searchText, style: AppTypography.bodyMedium.copyWith(fontSize: 18.sp))),
 
             // Botón para eliminar de recientes
             GestureDetector(
               onTap: () => _removeRecentSearch(index),
-              child: IconifyIcon(icon: 'iconoir:cancel', size: 20),
+              child: IconifyIcon(icon: 'iconoir:cancel', size: 20.sp),
             ),
           ],
         ),

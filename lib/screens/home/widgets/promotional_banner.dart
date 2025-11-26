@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../theme/app_typography.dart';
 import '../../../theme/app_constants.dart';
 
@@ -8,9 +9,9 @@ class PromotionalBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
+      height: 120.h,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppBorderRadius.lg),
         image: const DecorationImage(
           image: NetworkImage('https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800'),
           fit: BoxFit.cover,
@@ -18,21 +19,21 @@ class PromotionalBanner extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppBorderRadius.lg),
           gradient: LinearGradient(
             colors: [const Color(0xFF726D2D).withValues(alpha: 0.3), const Color(0xFF726D2D).withValues(alpha: 0.5)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
-        padding: EdgeInsets.all(AppSpacing.md),
+        padding: EdgeInsets.all(AppSpacing.mdW),
         alignment: Alignment.topLeft,
         child: Text(
           '¿Estás listo para nuestros\nnuevos productos?',
           style: AppTypography.titleMedium.copyWith(
             fontWeight: FontWeight.w400,
             color: Colors.white,
-            fontSize: 25,
+            fontSize: 25.sp,
             letterSpacing: 2.0,
             height: 1,
           ),

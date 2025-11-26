@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
 import 'package:go_router/go_router.dart';
+import 'package:zaia_app/theme/app_constants.dart';
 import '../../../theme/app_colors.dart';
 
 class ZaiaBottomNavigation extends StatelessWidget {
@@ -36,12 +38,12 @@ class ZaiaBottomNavigation extends StatelessWidget {
       onTap: () => context.go(route),
       behavior: HitTestBehavior.opaque,
       child: Container(
-        width: 48,
-        height: 48,
+        width: AppSpacing.xxlW,
+        height: AppSpacing.xxlH,
         decoration: BoxDecoration(shape: BoxShape.circle, color: isSelected ? AppColors.accent : Colors.transparent),
         child: IconButton(
           onPressed: () => context.go(route),
-          icon: IconifyIcon(icon: icon, color: isSelected ? AppColors.textOnPrimary : AppColors.grey800, size: 32),
+          icon: IconifyIcon(icon: icon, color: isSelected ? AppColors.textOnPrimary : AppColors.grey800, size: 32.sp),
         ),
       ),
     );

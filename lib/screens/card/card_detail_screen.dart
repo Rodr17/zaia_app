@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
@@ -38,14 +39,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
 
   void _onScroll() {
     // Solo cambiar el estado cuando se alcance exactamente el snap size
-    if (_scrollController.size >= 0.92 && !_isExpanded) {
+    if (_scrollController.size >= 0.92.h && !_isExpanded) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           setState(() => _isExpanded = true);
           _animationController.forward();
         }
       });
-    } else if (_scrollController.size <= 0.80 && _isExpanded) {
+    } else if (_scrollController.size <= 0.80.h && _isExpanded) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           setState(() => _isExpanded = false);
@@ -66,9 +67,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
     if (!_scrollController.isAttached) return;
 
     if (_isExpanded) {
-      _scrollController.animateTo(0.80, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+      _scrollController.animateTo(0.80.h, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
     } else {
-      _scrollController.animateTo(0.92, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+      _scrollController.animateTo(0.92.h, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
     }
   }
 
@@ -84,8 +85,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
             left: size.width / 2 - 200,
             child: ClipOval(
               child: Container(
-                width: 400,
-                height: 400,
+                width: 400.w,
+                height: 400.h,
                 decoration: BoxDecoration(
                   color: const Color(0xFFFFC439),
                   gradient: RadialGradient(
@@ -119,7 +120,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                   ],
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60), bottomRight: Radius.circular(60)),
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60.r), bottomRight: Radius.circular(60.r)),
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
@@ -130,7 +131,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
                             color: AppColors.grey300,
-                            child: const Center(child: Icon(Icons.image, size: 48, color: AppColors.grey500)),
+                            child: Center(child: Icon(Icons.image, size: 48.sp, color: AppColors.grey500)),
                           );
                         },
                       ),
@@ -140,15 +141,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                         right: 24,
                         bottom: 24,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(60),
+                          borderRadius: BorderRadius.circular(60.r),
                           child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                            filter: ImageFilter.blur(sigmaX: 15.w, sigmaY: 15.h),
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                               decoration: BoxDecoration(
                                 color: Colors.white.withValues(alpha: 0.2),
-                                borderRadius: BorderRadius.circular(24),
-                                border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1),
+                                borderRadius: BorderRadius.circular(24.r),
+                                border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1.w),
                               ),
                               child: Text(
                                 widget.text,
@@ -173,15 +174,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
           if (_isExpanded)
             SafeArea(
               child: Padding(
-                padding: EdgeInsets.all(AppSpacing.md),
+                padding: EdgeInsets.all(AppSpacing.mdW),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: Container(
-                        width: 40,
-                        height: 40,
+                        width: 40.w,
+                        height: 40.h,
                         decoration: BoxDecoration(
                           color: Colors.white.withValues(alpha: 0.9),
                           shape: BoxShape.circle,
@@ -193,13 +194,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                             ),
                           ],
                         ),
-                        child: const Icon(Icons.arrow_back, color: Colors.black87, size: 22),
+                        child: Icon(Icons.arrow_back, color: Colors.black87, size: 22.sp),
                       ),
                     ),
                     Row(
                       children: [
                         _buildActionButton(Icons.share_outlined),
-                        SizedBox(width: AppSpacing.sm),
+                        SizedBox(width: AppSpacing.smW),
                         _buildActionButton(Icons.favorite_border),
                       ],
                     ),
@@ -211,11 +212,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
           // Contenedor con imagen y panel deslizable
           DraggableScrollableSheet(
             controller: _scrollController,
-            initialChildSize: 0.80,
-            minChildSize: 0.80,
-            maxChildSize: 0.92,
+            initialChildSize: 0.80.h,
+            minChildSize: 0.80.h,
+            maxChildSize: 0.92.h,
             snap: true,
-            snapSizes: const [0.80, 0.92],
+            snapSizes: [0.80.h, 0.92.h],
             builder: (context, scrollController) {
               if (_isExpanded) {
                 // Modo expandido: imagen fija arriba, contenido scrolleable abajo
@@ -230,7 +231,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                         physics: const ClampingScrollPhysics(),
                         child: Container(
                           decoration: BoxDecoration(color: Colors.transparent),
-                          padding: EdgeInsets.fromLTRB(AppSpacing.xl, AppSpacing.xl, AppSpacing.xl, AppSpacing.xxl),
+                          padding: EdgeInsets.fromLTRB(AppSpacing.xlW, AppSpacing.xlH, AppSpacing.xlW, AppSpacing.xxlH),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -239,23 +240,23 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                                 'Descripción',
                                 style: AppTypography.titleLarge.copyWith(fontWeight: FontWeight.w700),
                               ),
-                              SizedBox(height: AppSpacing.md),
+                              SizedBox(height: AppSpacing.mdH),
                               // Texto descripción
                               Text(
                                 'Hacer una pausa consciente y llenar los pulmones de aire, ayuda a oxigenar el cuerpo y la mente. Deja ir el estrés, las preocupaciones o cualquier carga emocional que estemos experimentando. Anímate a recibir la tranquilidad con apertura, permitiendo que la paz interior nos envuelva y nos guíe hacia un estado de mayor equilibrio y serenidad.',
                                 style: AppTypography.bodyMedium.copyWith(color: AppColors.grey900, height: 1.6),
                               ),
-                              SizedBox(height: AppSpacing.xl),
+                              SizedBox(height: AppSpacing.xlH),
 
                               // Título Reto
                               Text('Reto', style: AppTypography.titleLarge.copyWith(fontWeight: FontWeight.w700)),
-                              SizedBox(height: AppSpacing.md),
+                              SizedBox(height: AppSpacing.mdH),
                               // Texto reto
                               Text(
                                 'Hacer meditación por lo menos 5 minutos, en un lugar sereno y tranquilo, que te genere paz. Se consciente de tu respiración y pensamientos que recorren tu mente durante estos 5 minutos, y suéltalos.',
                                 style: AppTypography.bodyMedium.copyWith(color: AppColors.grey900, height: 1.6),
                               ),
-                              SizedBox(height: AppSpacing.xxl),
+                              SizedBox(height: AppSpacing.xxlH),
 
                               // Botón Reto cumplido (amarillo)
                               SizedBox(
@@ -267,8 +268,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFFFFC53D),
                                     foregroundColor: Colors.black87,
-                                    padding: EdgeInsets.symmetric(vertical: 18),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                                    padding: EdgeInsets.symmetric(vertical: 18.h),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.r)),
                                     elevation: 0,
                                   ),
                                   child: Text(
@@ -276,7 +277,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                                     style: AppTypography.titleMedium.copyWith(
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 16,
+                                      fontSize: 16.sp,
                                     ),
                                   ),
                                 ),
@@ -295,13 +296,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                 controller: scrollController,
                 physics: const ClampingScrollPhysics(),
                 child: Column(
-                  spacing: AppSpacing.lg,
+                  spacing: AppSpacing.lgH,
                   children: [
                     // Logo ZAIA
                     SvgPicture.asset(
                       'assets/images/zaia_logo.min.svg',
                       width: size.width * 0.5,
-                      height: 30,
+                      height: 30.h,
                       fit: BoxFit.contain,
                     ),
 
@@ -310,10 +311,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                       Hero(
                         tag: 'card_${widget.category}_${widget.cardIndex}',
                         child: Container(
-                          height: 450,
-                          margin: EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                          height: 450.h,
+                          margin: EdgeInsets.symmetric(horizontal: AppSpacing.xlW),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(32),
+                            borderRadius: BorderRadius.circular(32.r),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withValues(alpha: 0.15),
@@ -323,7 +324,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                             ],
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(60),
+                            borderRadius: BorderRadius.circular(60.r),
                             child: Stack(
                               fit: StackFit.expand,
                               children: [
@@ -334,7 +335,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                                   errorBuilder: (context, error, stackTrace) {
                                     return Container(
                                       color: AppColors.grey300,
-                                      child: const Center(child: Icon(Icons.image, size: 48, color: AppColors.grey500)),
+                                      child: Center(child: Icon(Icons.image, size: 48.sp, color: AppColors.grey500)),
                                     );
                                   },
                                 ),
@@ -359,15 +360,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                                   right: 24,
                                   bottom: 24,
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(60),
+                                    borderRadius: BorderRadius.circular(60.r),
                                     child: BackdropFilter(
-                                      filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                                      filter: ImageFilter.blur(sigmaX: 15.w, sigmaY: 15.h),
                                       child: Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                                        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                                         decoration: BoxDecoration(
                                           color: Colors.white.withValues(alpha: 0.2),
-                                          borderRadius: BorderRadius.circular(24),
-                                          border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1),
+                                          borderRadius: BorderRadius.circular(24.r),
+                                          border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1.w),
                                         ),
                                         child: Text(
                                           widget.text,
@@ -391,7 +392,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                     // Flecha indicadora
                     GestureDetector(
                       onTap: _toggleExpanded,
-                      child: IconifyIcon(icon: 'icon-park-outline:up', size: 40, color: AppColors.surface),
+                      child: IconifyIcon(icon: 'icon-park-outline:up', size: 40.sp, color: AppColors.surface),
                     ),
                   ],
                 ),
@@ -407,14 +408,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
     return GestureDetector(
       onTap: () {},
       child: Container(
-        width: 40,
-        height: 40,
+        width: 40.w,
+        height: 40.h,
         decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.3), shape: BoxShape.circle),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Icon(icon, color: Colors.white, size: 22),
+            filter: ImageFilter.blur(sigmaX: 10.w, sigmaY: 10.h),
+            child: Icon(icon, color: Colors.white, size: 22.sp),
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
@@ -120,17 +121,17 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           children: [
             // Header
             Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: AppSpacing.md),
+              padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 25.h, bottom: AppSpacing.mdH),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                spacing: 16,
+                spacing: 16.w,
                 children: [
                   GestureDetector(
                     onTap: () => context.pop(),
                     child: Container(
-                      width: 31,
-                      height: 29,
+                      width: 31.w,
+                      height: 29.h,
                       // clipBehavior: Clip.antiAlias,
                       alignment: Alignment.center,
                       decoration: ShapeDecoration(
@@ -140,28 +141,28 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       child: const IconifyIcon(icon: 'icon-park-outline:left'),
                     ),
                   ),
-                  Text('Notificaciones', style: AppTypography.headlineMedium.copyWith(fontWeight: FontWeight.w500)),
+                  Text('Notificaciones', style: AppTypography.displaySmall),
                 ],
               ),
             ),
 
             // Línea divisoria
-            Divider(height: 0.5, color: AppColors.grey300, indent: 20, endIndent: 20),
+            Divider(height: 0.5.h, color: AppColors.grey300, indent: 20.w, endIndent: 20.w),
 
             // Contenido
             Expanded(
               child: (_newNotifications.isEmpty && _previousNotifications.isEmpty)
                   ? _buildEmptyState()
                   : ListView(
-                      padding: EdgeInsets.only(top: AppSpacing.xs, bottom: AppSpacing.md, left: AppSpacing.xs, right: AppSpacing.xs),
+                      padding: EdgeInsets.only(top: AppSpacing.xsH, bottom: AppSpacing.mdH, left: AppSpacing.xsW, right: AppSpacing.xsW),
                       children: [
                         // Sección "Nuevas"
                         if (_newNotifications.isNotEmpty) ...[
                           Padding(
                             padding: EdgeInsets.only(
-                              left: AppSpacing.md,
-                              right: AppSpacing.md,
-                              top: AppSpacing.sm,
+                              left: AppSpacing.mdW,
+                              right: AppSpacing.mdW,
+                              top: AppSpacing.smH,
                               bottom: 4,
                             ),
                             child: Text(
@@ -187,9 +188,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         if (_previousNotifications.isNotEmpty) ...[
                           Padding(
                             padding: EdgeInsets.only(
-                              left: AppSpacing.md,
-                              right: AppSpacing.md,
-                              top: AppSpacing.lg,
+                              left: AppSpacing.mdW,
+                              right: AppSpacing.mdW,
+                              top: AppSpacing.lgH,
                               bottom: 4,
                             ),
                             child: Text(
@@ -221,20 +222,24 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   Widget _buildEmptyState() {
     return Padding(
-      padding: EdgeInsets.all(AppSpacing.xl),
+      padding: EdgeInsets.all(AppSpacing.xlW),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 120,
-            height: 120,
-            padding: EdgeInsets.all(AppSpacing.md),
+            width: 120.w,
+            height: 120.h,
+            padding: EdgeInsets.all(AppSpacing.mdW),
             decoration: const BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
-            child: const IconifyIcon(icon: 'iconamoon:notification-thin', size: 60, color: AppColors.grey400),
+            child: IconifyIcon(icon: 'iconamoon:notification-thin', size: 60.sp, color: AppColors.grey400),
           ),
-          SizedBox(height: AppSpacing.lg),
+          
+          SizedBox(height: AppSpacing.lgH),
+          
           Text('Sin notificaciones', style: AppTypography.titleLarge, textAlign: TextAlign.center),
-          SizedBox(height: AppSpacing.sm),
+          
+          SizedBox(height: AppSpacing.smH),
+          
           Text(
             'Todas tus notificaciones aparecerán aquí',
             style: AppTypography.bodyMedium.copyWith(color: AppColors.grey600),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
+import 'package:zaia_app/theme/app_constants.dart';
 import '../../../models/product_model.dart';
 import '../../../theme/app_colors.dart';
 
@@ -15,8 +17,8 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 166,
-        height: 188,
+        width: 166.w,
+        height: 188.h,
         decoration: BoxDecoration(color: Colors.transparent),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,8 +27,8 @@ class ProductCard extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  width: 166,
-                  height: 150,
+                  width: 166.w,
+                  height: 150.h,
                   decoration: BoxDecoration(color: AppColors.grey200, borderRadius: BorderRadius.circular(0)),
                 ),
                 // Circular glow background
@@ -36,8 +38,8 @@ class ProductCard extends StatelessWidget {
                   child: Transform.translate(
                     offset: const Offset(-37.5, -37.5),
                     child: Container(
-                      width: 75,
-                      height: 75,
+                      width: 75.w,
+                      height: 75.h,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         boxShadow: [
@@ -56,8 +58,8 @@ class ProductCard extends StatelessWidget {
                   left: 21,
                   top: 54,
                   child: Container(
-                    width: 124,
-                    height: 43,
+                    width: 124.w,
+                    height: 43.h,
                     decoration: BoxDecoration(
                       // TODO: Reemplazar con imagen del producto
                       // image: DecorationImage(image: NetworkImage(product.imageUrl), fit: BoxFit.cover),
@@ -72,10 +74,10 @@ class ProductCard extends StatelessWidget {
                   child: GestureDetector(
                     onTap: onAddToCart,
                     child: Container(
-                      width: 16,
-                      height: 16,
+                      width: AppSpacing.mdW,
+                      height: AppSpacing.mdH,
                       decoration: const BoxDecoration(color: Colors.transparent),
-                      child: const IconifyIcon(icon: 'mynaui:plus', size: 16, color: Colors.black),
+                      child: IconifyIcon(icon: 'mynaui:plus', size: 16.sp, color: Colors.black),
                     ),
                   ),
                 ),
@@ -85,14 +87,14 @@ class ProductCard extends StatelessWidget {
             // Product name
             Text(
               product.name,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 23 / 14, letterSpacing: 0.24),
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, height: 23 / 14, letterSpacing: 0.24),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             // Product price
             Text(
               '\$${product.price.toStringAsFixed(0)}',
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, height: 23 / 14, letterSpacing: 0.24),
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600, height: 23 / 14, letterSpacing: 0.24),
             ),
           ],
         ),

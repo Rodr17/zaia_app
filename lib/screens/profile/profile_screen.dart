@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_typography.dart';
@@ -40,59 +41,61 @@ class _ProfileScreenState extends State<ProfileScreen> {
               _buildHeader(context),
 
               // 32 foto perfil + 8
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
 
               // Nombre
               Center(
                 child: Text(
                   _user.name,
-                  style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w600, color: Colors.black),
+                  style: TextStyle(fontSize: 26.sp, fontWeight: FontWeight.w600, color: Colors.black),
                 ),
               ),
-        
-              const SizedBox(height: 4),
-        
+
+              SizedBox(height: 4.h),
+
               // Email
               Center(
                 child: Text(
                   _user.email,
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black),
+                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: Colors.black),
                 ),
               ),
-        
-              const SizedBox(height: 5),
-        
+
+              SizedBox(height: 5.h),
+
               // Ubicación
               Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const IconifyIcon(icon: 'weui:location-outlined', size: 16, color: Colors.black),
-                    const SizedBox(width: 4),
+                    IconifyIcon(icon: 'weui:location-outlined', size: 16.sp, color: Colors.black),
+                    
+                    SizedBox(width: 4.w),
+                    
                     Text(
                       _user.location,
-                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black),
+                      style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: Colors.black),
                     ),
                   ],
                 ),
               ),
-        
-              const SizedBox(height: 14),
-        
+
+              SizedBox(height: 14.h),
+
               // Frase favorita
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Text('Frase favorita', style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w600)),
               ),
-        
-              const SizedBox(height: 8),
-        
+
+              SizedBox(height: 8.h),
+
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Text(
                   _user.favoritePhrase ?? '',
-                  style: const TextStyle(
-                    fontSize: 12,
+                  style: TextStyle(
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w300,
                     color: Colors.black,
                     height: 1.4,
@@ -100,65 +103,65 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
-        
-              const SizedBox(height: 32),
+
+              SizedBox(height: 32.h),
         
               // Habilidades
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Text('Habilidades', style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w600)),
               ),
-        
-              const SizedBox(height: 12),
-        
+
+              SizedBox(height: 12.h),
+
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Wrap(
-                  spacing: 10,
-                  runSpacing: 7,
+                  spacing: 10.w,
+                  runSpacing: 7.h,
                   children: _user.skills
                       .map(
                         (skill) => Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                          decoration: BoxDecoration(color: AppColors.grey200, borderRadius: BorderRadius.circular(12)),
+                          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                          decoration: BoxDecoration(color: AppColors.grey200, borderRadius: BorderRadius.circular(12.r)),
                           child: Text(
                             skill,
-                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300, color: Colors.black),
+                            style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w300, color: Colors.black),
                           ),
                         ),
                       )
                       .toList(),
                 ),
               ),
-        
-              const SizedBox(height: 32),
-        
+
+              SizedBox(height: 32.h),
+
               // Retos cumplidos
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Text('Retos cumplidos', style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w600)),
               ),
-        
-              const SizedBox(height: 12),
-        
+
+              SizedBox(height: 12.h),
+
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
+                  spacing: 8.w,
+                  runSpacing: 8.h,
                   children: _user.completedChallenges
                       .map(
                         (challenge) => Container(
-                          width: 50,
-                          height: 50,
+                          width: 50.w,
+                          height: 50.h,
                           decoration: BoxDecoration(color: AppColors.grey300, shape: BoxShape.circle),
                         ),
                       )
                       .toList(),
                 ),
               ),
-        
-              const SizedBox(height: 80), // Espacio para el bottom navigation
+
+              SizedBox(height: 80.h), // Espacio para el bottom navigation
             ],
           ),
         ),
@@ -168,13 +171,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _buildHeader(BuildContext context) {
     return SizedBox(
-      height: 210,
+      height: 210.h,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
           // Imagen de fondo del header
           Container(
-            height: 210,
+            height: 210.h,
             width: double.infinity,
             decoration: BoxDecoration(
               color: AppColors.grey200,
@@ -191,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             top: 0,
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 25.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -201,12 +204,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         // Acción de editar perfil
                       },
                       child: Container(
-                        width: 31,
-                        height: 29,
+                        width: 31.w,
+                        height: 29.h,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(color: Color.fromARGB(128, 245, 245, 245), shape: BoxShape.circle),
-                        padding: EdgeInsets.all(1),
-                        child: const IconifyIcon(icon: 'clarity:edit-line', size: 20, color: Colors.black),
+                        padding: EdgeInsets.all(1.w),
+                        child: IconifyIcon(icon: 'clarity:edit-line', size: 20.sp, color: Colors.black),
                       ),
                     ),
                   ],
@@ -222,8 +225,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             bottom: -32,
             child: Center(
               child: Container(
-                width: 137,
-                height: 137,
+                width: 137.w,
+                height: 137.h,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: _user.profileImageUrl != null
@@ -232,7 +235,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   color: _user.profileImageUrl == null ? AppColors.grey300 : null,
                 ),
                 child: _user.profileImageUrl == null
-                    ? const Icon(Icons.person, size: 60, color: AppColors.grey600)
+                    ? Icon(Icons.person, size: 60.sp, color: AppColors.grey600)
                     : null,
               ),
             ),

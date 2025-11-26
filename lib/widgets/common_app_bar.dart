@@ -25,20 +25,20 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      titleSpacing: AppSpacing.screenPadding,
+      titleSpacing: AppSpacing.screenPaddingW,
       title: Text(title, style: AppTypography.displaySmall),
       centerTitle: false,
       backgroundColor: AppColors.background,
       elevation: 0,
-      actionsPadding: EdgeInsets.only(right: AppSpacing.screenPadding),
+      actionsPadding: EdgeInsets.only(right: AppSpacing.screenPaddingW),
       actions: [
         Row(
           spacing: 9.r,
           children: [
             if (showSearchButton)
               IconButton(
-                padding: EdgeInsets.all(AppBorderRadius.sm),
-                icon: IconifyIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.textPrimary),
+                padding: EdgeInsets.all(AppSpacing.smW),
+                icon: const IconifyIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.textPrimary),
                 style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
@@ -47,7 +47,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
         
             if (showNotificationButton)
               IconButton(
-                padding: EdgeInsets.all(AppBorderRadius.icon),
+                padding: EdgeInsets.all(AppSpacing.smW),
                 icon: const IconifyIcon(icon: 'iconamoon:notification-thin', color: AppColors.textPrimary),
                 style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
                 onPressed: () {

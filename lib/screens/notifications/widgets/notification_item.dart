@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_constants.dart';
@@ -13,8 +14,8 @@ class NotificationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
-      margin: EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 8),
+      height: 40.h,
+      margin: EdgeInsets.symmetric(horizontal: AppSpacing.mdW, vertical: AppSpacing.smH),
       child: Row(
         children: [
           // Avatar circular con imagen
@@ -22,27 +23,27 @@ class NotificationItem extends StatelessWidget {
             child: notification.imageUrl != null
                 ? Image.network(
                     notification.imageUrl!,
-                    width: 32,
-                    height: 32,
+                    width: AppSpacing.xlW,
+                    height: AppSpacing.xlH,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
-                        width: 32,
-                        height: 32,
+                        width: AppSpacing.xlW,
+                        height: AppSpacing.xlH,
                         color: AppColors.grey300,
-                        child: const Icon(Icons.person, size: 18, color: AppColors.grey600),
+                        child: Icon(Icons.person, size: 18.sp, color: AppColors.grey600),
                       );
                     },
                   )
                 : Container(
-                    width: 32,
-                    height: 32,
+                    width: AppSpacing.xlW,
+                    height: AppSpacing.xlH,
                     color: AppColors.grey300,
-                    child: const Icon(Icons.notifications_outlined, size: 16, color: AppColors.grey600),
+                    child: Icon(Icons.notifications_outlined, size: 16.sp, color: AppColors.grey600),
                   ),
           ),
 
-          SizedBox(width: 12),
+          SizedBox(width: 12.w),
 
           // Contenido de la notificación
           Expanded(
@@ -52,14 +53,16 @@ class NotificationItem extends StatelessWidget {
               children: [
                 Text(
                   notification.title,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.black),
+                  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300, color: Colors.black),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 2),
+                
+                SizedBox(height: 2.h),
+                
                 Text(
                   _formatTimestamp(notification.timestamp),
-                  style: TextStyle(fontSize: 14, color: Colors.black.withValues(alpha: 0.4)),
+                  style: TextStyle(fontSize: 14.sp, color: Colors.black.withValues(alpha: 0.4)),
                 ),
               ],
             ),
@@ -67,7 +70,7 @@ class NotificationItem extends StatelessWidget {
 
           // Botón de eliminar
           IconButton(
-            icon: const IconifyIcon(icon: 'iconoir:cancel', size: 20),
+            icon: IconifyIcon(icon: 'iconoir:cancel', size: 20.sp),
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(),
             onPressed: onDismiss,

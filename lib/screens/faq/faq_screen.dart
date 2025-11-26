@@ -42,9 +42,9 @@ class FaqScreen extends StatelessWidget {
       backgroundColor: AppColors.background,
       appBar: const CommonAppBar(title: 'Preguntas frecuentes'),
       body: ListView.separated(
-        padding: EdgeInsets.all(AppSpacing.md),
+        padding: EdgeInsets.all(AppSpacing.mdW),
         itemCount: faqItems.length,
-        separatorBuilder: (context, index) => SizedBox(height: AppSpacing.md),
+        separatorBuilder: (context, index) => SizedBox(height: AppSpacing.mdH),
         itemBuilder: (context, index) {
           final item = faqItems[index];
           return _FaqItem(question: item['question'] as String, answer: item['answer'] as String);
@@ -85,7 +85,7 @@ class _FaqItemState extends State<_FaqItem> {
         },
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(AppSpacing.md, 0, AppSpacing.md, AppSpacing.md),
+            padding: EdgeInsets.fromLTRB(AppSpacing.mdW, 0, AppSpacing.mdW, AppSpacing.mdH),
             child: Text(widget.answer, style: AppTypography.bodyMedium.copyWith(color: AppColors.textSecondary)),
           ),
         ],

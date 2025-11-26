@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_typography.dart';
 import '../theme/app_constants.dart';
@@ -33,7 +34,7 @@ class BraceletCard extends StatelessWidget {
 
             // Información
             Container(
-              padding: EdgeInsets.all(AppSpacing.md),
+              padding: EdgeInsets.all(AppSpacing.mdW),
               decoration: BoxDecoration(
                 color: AppColors.primary.withValues(alpha: 0.9),
                 borderRadius: BorderRadius.only(
@@ -75,7 +76,7 @@ class CategoryChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+        padding: EdgeInsets.symmetric(horizontal: AppSpacing.mdW, vertical: AppSpacing.smH),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primary : AppColors.surfaceVariant,
           borderRadius: BorderRadius.circular(AppBorderRadius.chip),
@@ -209,18 +210,24 @@ class NewsCard extends StatelessWidget {
 
             // Contenido
             Padding(
-              padding: EdgeInsets.all(AppSpacing.md),
+              padding: EdgeInsets.all(AppSpacing.mdW),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(category, style: AppTypography.labelSmall.copyWith(color: AppColors.primary)),
-                  const SizedBox(height: 4),
+                  
+                  SizedBox(height: AppSpacing.xsH),
+                  
                   Text(title, style: AppTypography.titleMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
-                  const SizedBox(height: 12),
+                  
+                  SizedBox(height: 12.h),
+                  
                   Row(
                     children: [
-                      CircleAvatar(radius: 14, backgroundImage: NetworkImage(authorImage)),
-                      const SizedBox(width: 8),
+                      CircleAvatar(radius: 14.r, backgroundImage: NetworkImage(authorImage)),
+                      
+                      SizedBox(width: AppSpacing.smW),
+                      
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -230,15 +237,17 @@ class NewsCard extends StatelessWidget {
                           ],
                         ),
                       ),
+                      
                       IconButton(
-                        icon: const Icon(Icons.bookmark_border, size: 20),
+                        icon: Icon(Icons.bookmark_border, size: 20.sp),
                         onPressed: onBookmark,
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                       ),
-                      const SizedBox(width: 4),
+                      
+                      SizedBox(width: AppSpacing.xsW),
                       IconButton(
-                        icon: const Icon(Icons.favorite_border, size: 20),
+                        icon: Icon(Icons.favorite_border, size: 20.sp),
                         onPressed: onFavorite,
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
@@ -270,25 +279,31 @@ class TrendingBadge extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: EdgeInsets.all(AppSpacing.md),
+          padding: EdgeInsets.all(AppSpacing.mdW),
           child: Row(
             children: [
               CircleAvatar(
-                radius: 30,
+                radius: 30.r,
                 backgroundColor: AppColors.primary.withValues(alpha: 0.1),
                 child: Icon(icon, color: AppColors.primary, size: 28),
               ),
-              SizedBox(width: AppSpacing.md),
+              
+              SizedBox(width: AppSpacing.mdW),
+              
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(label, style: AppTypography.titleMedium),
-                    const SizedBox(height: 4),
+                    
+                    SizedBox(height: AppSpacing.xsH),
+                    
                     Row(
                       children: [
-                        Icon(Icons.article, size: 16, color: AppColors.textTertiary),
-                        const SizedBox(width: 4),
+                        Icon(Icons.article, size: 16.sp, color: AppColors.textTertiary),
+                        
+                        SizedBox(width: AppSpacing.xsW),
+                        
                         Text('$count noticias', style: AppTypography.bodySmall),
                       ],
                     ),

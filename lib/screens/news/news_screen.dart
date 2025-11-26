@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zaia_app/theme/app_constants.dart';
 import '../../models/news_model.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/common_app_bar.dart';
@@ -99,26 +101,32 @@ class _NewsScreenState extends State<NewsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 8),
+            SizedBox(height: AppSpacing.smH),
             // Selection indicator line
             Container(
-              margin: const EdgeInsets.only(left: 20),
+              margin: EdgeInsets.only(left: 20.w),
               child: Row(
                 children: [
                   Container(
-                    width: 28,
-                    height: 3,
-                    decoration: BoxDecoration(color: AppColors.grey800, borderRadius: BorderRadius.circular(10)),
+                    width: 28.w,
+                    height: 3.h,
+                    decoration: BoxDecoration(color: AppColors.grey800, borderRadius: BorderRadius.circular(10.r)),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            
+            SizedBox(height: 10.r),
+            
             _buildCategories(),
+            
             _buildFeaturedNews(),
-            const SizedBox(height: 30),
+            
+            SizedBox(height: 30.h),
+            
             _buildTrendingSection(),
-            const SizedBox(height: 20),
+
+            SizedBox(height: 20.h),
           ],
         ),
       ),
@@ -132,9 +140,9 @@ class _NewsScreenState extends State<NewsScreen> {
           height: 40,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
             itemCount: _categories.length,
-            separatorBuilder: (context, index) => const SizedBox(width: 20),
+            separatorBuilder: (context, index) => SizedBox(width: 20.w),
             itemBuilder: (context, index) {
               final isSelected = index == _selectedCategoryIndex;
               return GestureDetector(
@@ -146,7 +154,7 @@ class _NewsScreenState extends State<NewsScreen> {
                 child: Text(
                   _categories[index],
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                     color: isSelected ? AppColors.grey800 : AppColors.textSecondary,
                   ),
@@ -161,12 +169,12 @@ class _NewsScreenState extends State<NewsScreen> {
 
   Widget _buildFeaturedNews() {
     return SizedBox(
-      height: 180,
+      height: 180.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         itemCount: _featuredNews.length,
-        separatorBuilder: (context, index) => const SizedBox(width: 20),
+        separatorBuilder: (context, index) => SizedBox(width: 20.w),
         itemBuilder: (context, index) {
           return FeaturedNewsCard(
             news: _featuredNews[index],
@@ -183,18 +191,18 @@ class _NewsScreenState extends State<NewsScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text('Noticias trending', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: Text('Noticias trending', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
         ),
 
-        const SizedBox(height: 7),
-        
+        SizedBox(height: 7.h),
+
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: _trendingNews.length,
-          separatorBuilder: (context, index) => const SizedBox(height: 10),
+          separatorBuilder: (context, index) => SizedBox(height: 10.h),
           itemBuilder: (context, index) {
             return TrendingNewsCard(
               news: _trendingNews[index],

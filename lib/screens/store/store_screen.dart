@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
 import 'package:zaia_app/theme/app_colors.dart';
+import 'package:zaia_app/theme/app_constants.dart';
 import '../../models/product_model.dart';
 import 'widgets/product_card.dart';
 
@@ -56,11 +58,17 @@ class _StoreScreenState extends State<StoreScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildHeader(),
-                const SizedBox(height: 10),
+                
+                SizedBox(height: 10.h),
+                
                 _buildCategories(),
-                const SizedBox(height: 24),
+                
+                SizedBox(height: AppSpacing.lgH),
+                
                 _buildNovedadesSection(),
-                const SizedBox(height: 32),
+                
+                SizedBox(height: AppSpacing.xlH),
+                
                 _buildRecommendationsSection(),
               ],
             ),
@@ -77,7 +85,7 @@ class _StoreScreenState extends State<StoreScreen> {
       children: [
         // Background image
         Container(
-          height: 419,
+          height: 419.h,
           width: screen.width,
           decoration: const BoxDecoration(color: Color(0xFFD9D9D9)),
           child: Image.network(
@@ -94,7 +102,7 @@ class _StoreScreenState extends State<StoreScreen> {
           right: 0,
           top: 81,
           child: Container(
-            height: 338,
+            height: 338.h,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -109,64 +117,64 @@ class _StoreScreenState extends State<StoreScreen> {
         // Header content
         SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 4.h),
             child: Column(
               children: [
                 // Header with title and icons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       'Tienda',
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Colors.white),
+                      style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w800, color: Colors.white),
                     ),
                     Row(
-                      spacing: 8,
+                      spacing: 8.w,
                       children: [
                         Container(
-                          width: 32,
-                          height: 32,
+                          width: AppSpacing.xlW,
+                          height: AppSpacing.xlH,
                           decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.5), shape: BoxShape.circle),
-                          child: const Center(
-                            child: IconifyIcon(icon: 'ph:bag-thin', size: 20, color: Colors.black),
+                          child: Center(
+                            child: IconifyIcon(icon: 'ph:bag-thin', size: 20.sp, color: Colors.black),
                           ),
                         ),
                         Container(
-                          width: 32,
-                          height: 32,
+                          width: AppSpacing.xlW,
+                          height: AppSpacing.xlH,
                           decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.5), shape: BoxShape.circle),
-                          child: const Center(
+                          child: Center(
                             child: IconifyIcon(
                               icon: 'material-symbols-light:search-rounded',
-                              size: 20,
+                              size: 20.sp,
                               color: Colors.black,
                             ),
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(6),
+                          padding: EdgeInsets.all(6.w),
                           decoration: BoxDecoration(
                             color: Colors.white.withValues(alpha: 0.5),
-                            borderRadius: BorderRadius.circular(24),
+                            borderRadius: BorderRadius.circular(24.r),
                           ),
-                          child: const IconifyIcon(icon: 'iconamoon:notification-thin', size: 20, color: Colors.black),
+                          child: IconifyIcon(icon: 'iconamoon:notification-thin', size: 20.sp, color: Colors.black),
                         ),
                       ],
                     ),
                   ],
                 ),
                 
-                const SizedBox(height: 40),
+                SizedBox(height: 40.h),
                 
                 // Product image with glow effect
                 Padding(
-                  padding: const EdgeInsets.only(right: 17),
+                  padding: EdgeInsets.only(right: 17.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        width: 160,
-                        height: 160,
+                        width: 160.w,
+                        height: 160.h,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           boxShadow: [
@@ -184,35 +192,38 @@ class _StoreScreenState extends State<StoreScreen> {
                     ],
                   ),
                 ),
-                
-                const SizedBox(height: 35),
-                
+
+                SizedBox(height: 35.h),
+
                 // Product info
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       _featuredProduct.name,
-                      style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w500, color: Colors.white),
+                      style: TextStyle(fontSize: 26.sp, fontWeight: FontWeight.w500, color: Colors.white),
                     ),
-                    const SizedBox(height: 4),
+                    
+                    SizedBox(height: AppSpacing.xsH),
+                    
                     Text(
                       _featuredProduct.description,
-                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w100, color: Colors.white),
+                      style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w100, color: Colors.white),
                     ),
-                    const SizedBox(height: 12),
+                    
+                    SizedBox(height: 12.h),
                     
                     // Gallery images
                     Row(
-                      spacing: 14,
+                      spacing: 14.w,
                       children: _featuredProduct.galleryImages!
                           .map(
                             (img) => Container(
-                              width: 80,
-                              height: 80,
+                              width: 80.w,
+                              height: 80.h,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 2),
+                                border: Border.all(color: Colors.white, width: 2.w),
                                 image: DecorationImage(image: NetworkImage(img), fit: BoxFit.cover),
                               ),
                             ),
@@ -233,17 +244,17 @@ class _StoreScreenState extends State<StoreScreen> {
     return Column(
       children: [
         Container(
-          margin: const EdgeInsets.only(left: 20),
+          margin: EdgeInsets.only(left: 20.w),
           alignment: Alignment.centerLeft,
-          child: Container(width: 28, height: 3, decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(10)),),
+          child: Container(width: 28.w, height: 3.h, decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(10.r)),),
         ),
         SizedBox(
-          height: 40,
+          height: 40.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             itemCount: _categories.length,
-            separatorBuilder: (context, index) => const SizedBox(width: 20),
+            separatorBuilder: (context, index) => SizedBox(width: 20.w),
             itemBuilder: (context, index) {
               final isSelected = index == _selectedCategoryIndex;
               return GestureDetector(
@@ -255,7 +266,7 @@ class _StoreScreenState extends State<StoreScreen> {
                 child: Text(
                   _categories[index],
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                     color: isSelected ? Colors.black : Colors.black,
                   ),
@@ -274,14 +285,15 @@ class _StoreScreenState extends State<StoreScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Novedades', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+              Text('Novedades', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600)),
+              
               Container(
-                width: 24,
-                height: 24,
+                width: AppSpacing.lgW,
+                height: AppSpacing.lgH,
                 decoration: BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
                 child: IconButton(
                   icon: IconifyIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800,),
@@ -299,17 +311,17 @@ class _StoreScreenState extends State<StoreScreen> {
           child: Container(
             height: 120,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
               color: const Color(0xFF726D2D).withValues(alpha: 0.4),
             ),
             child: Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(16.r),
                   child: Image.network(
                     'https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800',
                     width: double.infinity,
-                    height: 120,
+                    height: 120.h,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(color: Colors.grey[300]);
@@ -318,20 +330,20 @@ class _StoreScreenState extends State<StoreScreen> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(AppBorderRadius.lg),
                     color: const Color(0xFF726D2D).withValues(alpha: 0.4),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.all(16.sp),
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: SizedBox(
-                      width: 327,
+                      width: 327.w,
                       child: Text(
                         '¿Estas listo para nuestros\nnuevos productos?',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
                           color: Colors.white,
                           letterSpacing: 2,
@@ -354,14 +366,14 @@ class _StoreScreenState extends State<StoreScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Recomendaciones', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+              Text('Recomendaciones', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600)),
               Container(
-                width: 24,
-                height: 24,
+                width: AppSpacing.lgW,
+                height: AppSpacing.lgH,
                 decoration: BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
                 child: IconButton(
                   icon: IconifyIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800,),
@@ -375,7 +387,7 @@ class _StoreScreenState extends State<StoreScreen> {
         
         // Product grid
         Padding(
-          padding: const EdgeInsets.only(left: 20),
+          padding: EdgeInsets.only(left: 20.w),
           child: GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_design/iconify_design.dart';
 import '../../../models/news_model.dart';
 import '../../../theme/app_colors.dart';
@@ -15,8 +16,8 @@ class FeaturedNewsCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 200,
-        height: 180,
+        width: 200.w,
+        height: 180.h,
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(AppBorderRadius.lg),
@@ -30,13 +31,13 @@ class FeaturedNewsCard extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(AppBorderRadius.lg)),
               child: Image.network(
                 news.imageUrl,
-                width: 200,
-                height: 100,
+                width: 200.w,
+                height: 100.h,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
-                    width: 200,
-                    height: 100,
+                    width: 200.w,
+                    height: 100.h,
                     color: AppColors.grey200,
                     child: const Icon(Icons.image_not_supported),
                   );
@@ -46,7 +47,7 @@ class FeaturedNewsCard extends StatelessWidget {
             // Content
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: EdgeInsets.all(AppSpacing.smW),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,7 +55,7 @@ class FeaturedNewsCard extends StatelessWidget {
                     // Title
                     Text(
                       news.title,
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, height: 1.2),
+                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600, height: 1.2),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -63,11 +64,13 @@ class FeaturedNewsCard extends StatelessWidget {
                       children: [
                         // Author avatar
                         CircleAvatar(
-                          radius: 14,
+                          radius: 14.r,
                           backgroundImage: NetworkImage(news.authorAvatar),
                           backgroundColor: AppColors.grey200,
                         ),
-                        const SizedBox(width: 4),
+                        
+                        SizedBox(width: 4.w),
+                        
                         // Author name and date
                         Expanded(
                           child: Column(
@@ -75,14 +78,14 @@ class FeaturedNewsCard extends StatelessWidget {
                             children: [
                               Text(
                                 news.authorName,
-                                style: const TextStyle(fontSize: 12),
+                                style: TextStyle(fontSize: 12.sp),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
                                 news.date,
                                 style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 10.sp,
                                   fontWeight: FontWeight.w200,
                                   color: AppColors.textSecondary,
                                   letterSpacing: .4
@@ -91,16 +94,19 @@ class FeaturedNewsCard extends StatelessWidget {
                             ],
                           ),
                         ),
+                        
                         // Action icons
                         IconifyIcon(
                           icon: news.isFavorite ? 'mdi:heart' : 'mdi:heart-outline',
-                          size: 16,
+                          size: 16.sp,
                           color: news.isFavorite ? Colors.red : AppColors.grey800,
                         ),
-                        const SizedBox(width: 5),
+                        
+                        SizedBox(width: 5.w),
+                        
                         IconifyIcon(
                           icon: news.isBookmarked ? 'mdi:bookmark' : 'mdi:bookmark-outline',
-                          size: 16,
+                          size: 16.sp,
                           color: news.isBookmarked ? AppColors.cordBronze : AppColors.grey800,
                         ),
                       ],
