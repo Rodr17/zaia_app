@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_typography.dart';
+import 'cached_image.dart';
 import '../theme/app_constants.dart';
 
 /// Widget personalizado para tarjetas de brazaletes
@@ -27,7 +28,7 @@ class BraceletCard extends StatelessWidget {
               aspectRatio: 1,
               child: Container(
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: NetworkImage(imageUrl), fit: BoxFit.cover),
+                  image: DecorationImage(image: CachedImageProvider(imageUrl), fit: BoxFit.cover),
                 ),
               ),
             ),
@@ -116,7 +117,13 @@ class StoneIndicator extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(color: isSelected ? AppColors.primary : Colors.transparent, width: 3),
               boxShadow: isSelected
-                  ? [BoxShadow(color: AppColors.primary.withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 2))]
+                  ? [
+                      BoxShadow(
+                        color: AppColors.primary.withValues(alpha: 0.3),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ]
                   : null,
             ),
           ),
@@ -203,7 +210,7 @@ class NewsCard extends StatelessWidget {
               aspectRatio: 2,
               child: Container(
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: NetworkImage(imageUrl), fit: BoxFit.cover),
+                  image: DecorationImage(image: CachedImageProvider(imageUrl), fit: BoxFit.cover),
                 ),
               ),
             ),
@@ -215,19 +222,19 @@ class NewsCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(category, style: AppTypography.labelSmall.copyWith(color: AppColors.primary)),
-                  
+
                   SizedBox(height: AppSpacing.xsH),
-                  
+
                   Text(title, style: AppTypography.titleMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
-                  
+
                   SizedBox(height: 12.h),
-                  
+
                   Row(
                     children: [
-                      CircleAvatar(radius: 14.r, backgroundImage: NetworkImage(authorImage)),
-                      
+                      CircleAvatar(radius: 14.r, backgroundImage: CachedImageProvider(authorImage)),
+
                       SizedBox(width: AppSpacing.smW),
-                      
+
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,14 +244,14 @@ class NewsCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      
+
                       IconButton(
                         icon: Icon(Icons.bookmark_border, size: 20.sp),
                         onPressed: onBookmark,
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                       ),
-                      
+
                       SizedBox(width: AppSpacing.xsW),
                       IconButton(
                         icon: Icon(Icons.favorite_border, size: 20.sp),
@@ -287,23 +294,23 @@ class TrendingBadge extends StatelessWidget {
                 backgroundColor: AppColors.primary.withValues(alpha: 0.1),
                 child: Icon(icon, color: AppColors.primary, size: 28),
               ),
-              
+
               SizedBox(width: AppSpacing.mdW),
-              
+
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(label, style: AppTypography.titleMedium),
-                    
+
                     SizedBox(height: AppSpacing.xsH),
-                    
+
                     Row(
                       children: [
                         Icon(Icons.article, size: 16.sp, color: AppColors.textTertiary),
-                        
+
                         SizedBox(width: AppSpacing.xsW),
-                        
+
                         Text('$count noticias', style: AppTypography.bodySmall),
                       ],
                     ),

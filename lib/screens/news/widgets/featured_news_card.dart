@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconify_design/iconify_design.dart';
 import '../../../models/news_model.dart';
+import '../../../widgets/local_icon.dart';
+import '../../../widgets/cached_image.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_constants.dart';
 
@@ -29,19 +30,17 @@ class FeaturedNewsCard extends StatelessWidget {
             // Image
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(AppBorderRadius.lg)),
-              child: Image.network(
-                news.imageUrl,
+              child: CachedImage(
+                imageUrl: news.imageUrl,
                 width: 200.w,
                 height: 100.h,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    width: 200.w,
-                    height: 100.h,
-                    color: AppColors.grey200,
-                    child: const Icon(Icons.image_not_supported),
-                  );
-                },
+                errorWidget: Container(
+                  width: 200.w,
+                  height: 100.h,
+                  color: AppColors.grey200,
+                  child: const Icon(Icons.image_not_supported),
+                ),
               ),
             ),
             // Content
@@ -65,12 +64,12 @@ class FeaturedNewsCard extends StatelessWidget {
                         // Author avatar
                         CircleAvatar(
                           radius: 14.r,
-                          backgroundImage: NetworkImage(news.authorAvatar),
+                          backgroundImage: CachedImageProvider(news.authorAvatar),
                           backgroundColor: AppColors.grey200,
                         ),
-                        
+
                         SizedBox(width: 4.w),
-                        
+
                         // Author name and date
                         Expanded(
                           child: Column(
@@ -88,23 +87,23 @@ class FeaturedNewsCard extends StatelessWidget {
                                   fontSize: 10.sp,
                                   fontWeight: FontWeight.w200,
                                   color: AppColors.textSecondary,
-                                  letterSpacing: .4
+                                  letterSpacing: .4,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        
+
                         // Action icons
-                        IconifyIcon(
+                        LocalIcon(
                           icon: news.isFavorite ? 'mdi:heart' : 'mdi:heart-outline',
                           size: 16.sp,
                           color: news.isFavorite ? Colors.red : AppColors.grey800,
                         ),
-                        
+
                         SizedBox(width: 5.w),
-                        
-                        IconifyIcon(
+
+                        LocalIcon(
                           icon: news.isBookmarked ? 'mdi:bookmark' : 'mdi:bookmark-outline',
                           size: 16.sp,
                           color: news.isBookmarked ? AppColors.cordBronze : AppColors.grey800,

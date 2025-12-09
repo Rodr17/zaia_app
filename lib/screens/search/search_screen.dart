@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/local_icon.dart';
 import '../../theme/app_typography.dart';
 import '../../theme/app_constants.dart';
 
@@ -93,7 +93,7 @@ class _SearchScreenState extends State<SearchScreen> {
               width: 31.w,
               height: 29.h,
               alignment: Alignment.center,
-              child: IconifyIcon(icon: 'icon-park-outline:left', color: AppColors.grey800, size: 24.sp),
+              child: LocalIcon(icon: 'icon-park-outline:left', color: AppColors.grey800, size: 24.sp),
             ),
           ),
 
@@ -152,7 +152,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       },
                       child: Padding(
                         padding: EdgeInsets.only(right: 12.w),
-                        child: IconifyIcon(icon: 'material-symbols:cancel-outline-rounded', size: 20.sp),
+                        child: LocalIcon(icon: 'material-symbols:cancel-outline-rounded', size: 20.sp),
                       ),
                     ),
                   // Botón cancelar/limpiar
@@ -212,19 +212,21 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               child: Padding(
                 padding: EdgeInsets.all(AppSpacing.smW),
-                child: IconifyIcon(icon: 'fluent-mdl2:return-to-session', size: 14.sp),
+                child: LocalIcon(icon: 'fluent-mdl2:return-to-session', size: 14.sp),
               ),
             ),
 
             SizedBox(width: 12.w),
 
             // Texto de búsqueda
-            Expanded(child: Text(searchText, style: AppTypography.bodyMedium.copyWith(fontSize: 18.sp))),
+            Expanded(
+              child: Text(searchText, style: AppTypography.bodyMedium.copyWith(fontSize: 18.sp)),
+            ),
 
             // Botón para eliminar de recientes
             GestureDetector(
               onTap: () => _removeRecentSearch(index),
-              child: IconifyIcon(icon: 'iconoir:cancel', size: 20.sp),
+              child: LocalIcon(icon: 'iconoir:cancel', size: 20.sp),
             ),
           ],
         ),

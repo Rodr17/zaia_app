@@ -72,7 +72,7 @@ class AppTheme {
       ),
 
       // AppBar
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         elevation: 0,
         centerTitle: false,
         backgroundColor: AppColors.background,
@@ -81,7 +81,7 @@ class AppTheme {
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleTextStyle: TextStyle(
           fontFamily: AppTypography.fontFamily,
-          fontSize: 24,
+          fontSize: 24.sp,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimary,
         ),

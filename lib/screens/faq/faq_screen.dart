@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iconify_design/iconify_design.dart';
 import 'package:zaia_app/theme/app_typography.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/local_icon.dart';
 import '../../theme/app_constants.dart';
 import '../../widgets/common_app_bar.dart';
 
@@ -77,7 +77,7 @@ class _FaqItemState extends State<_FaqItem> {
         collapsedBackgroundColor: AppColors.grey200,
         backgroundColor: AppColors.cordBronze.withValues(alpha: .4),
         title: Text(widget.question, style: AppTypography.titleSmall.copyWith(fontWeight: FontWeight.w600)),
-        trailing: _isExpanded ? IconifyIcon(icon: 'ic:round-close') : IconifyIcon(icon: 'ic:round-plus'),
+        trailing: _isExpanded ? LocalIcon(icon: 'ic:round-close') : LocalIcon(icon: 'ic:round-plus'),
         onExpansionChanged: (expanded) {
           setState(() {
             _isExpanded = expanded;

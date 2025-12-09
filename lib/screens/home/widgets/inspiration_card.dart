@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zaia_app/theme/app_constants.dart';
 import '../../../theme/app_colors.dart';
+import '../../../widgets/cached_image.dart';
 import '../../../theme/app_typography.dart';
 
 class InspirationCard extends StatelessWidget {
@@ -28,17 +29,17 @@ class InspirationCard extends StatelessWidget {
           // Background Image
           ClipRRect(
             borderRadius: BorderRadius.circular(24.r),
-            child: Image.network(
-              imageUrl,
+            child: CachedImage(
+              imageUrl: imageUrl,
               width: 200.w,
               height: 300.h,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: AppColors.grey300,
-                  child: Center(child: Icon(Icons.image, size: 48.r, color: AppColors.grey500)),
-                );
-              },
+              errorWidget: Container(
+                color: AppColors.grey300,
+                child: Center(
+                  child: Icon(Icons.image, size: 48.r, color: AppColors.grey500),
+                ),
+              ),
             ),
           ),
 

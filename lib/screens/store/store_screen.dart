@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconify_design/iconify_design.dart';
 import 'package:zaia_app/theme/app_colors.dart';
+import '../../widgets/local_icon.dart';
+import '../../widgets/cached_image.dart';
 import 'package:zaia_app/theme/app_constants.dart';
 import '../../models/product_model.dart';
 import 'widgets/product_card.dart';
@@ -58,17 +59,17 @@ class _StoreScreenState extends State<StoreScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildHeader(),
-                
+
                 SizedBox(height: 10.h),
-                
+
                 _buildCategories(),
-                
+
                 SizedBox(height: AppSpacing.lgH),
-                
+
                 _buildNovedadesSection(),
-                
+
                 SizedBox(height: AppSpacing.xlH),
-                
+
                 _buildRecommendationsSection(),
               ],
             ),
@@ -88,12 +89,12 @@ class _StoreScreenState extends State<StoreScreen> {
           height: 419.h,
           width: screen.width,
           decoration: const BoxDecoration(color: Color(0xFFD9D9D9)),
-          child: Image.network(
-            'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800',
+          child: CachedImage(
+            imageUrl: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800',
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(color: const Color(0xFFD9D9D9));
-            },
+            width: screen.width,
+            height: 419.h,
+            errorWidget: Container(color: const Color(0xFFD9D9D9)),
           ),
         ),
         // Gradient overlay
@@ -113,7 +114,7 @@ class _StoreScreenState extends State<StoreScreen> {
             ),
           ),
         ),
-        
+
         // Header content
         SafeArea(
           child: Padding(
@@ -136,7 +137,7 @@ class _StoreScreenState extends State<StoreScreen> {
                           height: AppSpacing.xlH,
                           decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.5), shape: BoxShape.circle),
                           child: Center(
-                            child: IconifyIcon(icon: 'ph:bag-thin', size: 20.sp, color: Colors.black),
+                            child: LocalIcon(icon: 'ph:bag-thin', size: 20.sp, color: Colors.black),
                           ),
                         ),
                         Container(
@@ -144,7 +145,7 @@ class _StoreScreenState extends State<StoreScreen> {
                           height: AppSpacing.xlH,
                           decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.5), shape: BoxShape.circle),
                           child: Center(
-                            child: IconifyIcon(
+                            child: LocalIcon(
                               icon: 'material-symbols-light:search-rounded',
                               size: 20.sp,
                               color: Colors.black,
@@ -157,15 +158,15 @@ class _StoreScreenState extends State<StoreScreen> {
                             color: Colors.white.withValues(alpha: 0.5),
                             borderRadius: BorderRadius.circular(24.r),
                           ),
-                          child: IconifyIcon(icon: 'iconamoon:notification-thin', size: 20.sp, color: Colors.black),
+                          child: LocalIcon(icon: 'iconamoon:notification-thin', size: 20.sp, color: Colors.black),
                         ),
                       ],
                     ),
                   ],
                 ),
-                
+
                 SizedBox(height: 40.h),
-                
+
                 // Product image with glow effect
                 Padding(
                   padding: EdgeInsets.only(right: 17.w),
@@ -177,13 +178,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         height: 160.h,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color(0xFFFFC439),
-                              blurRadius: 80,
-                              spreadRadius: 10,
-                            ),
-                          ],
+                          boxShadow: [BoxShadow(color: const Color(0xFFFFC439), blurRadius: 80, spreadRadius: 10)],
                           // TODO: Reemplazar por imagen modelado de datos
                           // image: DecorationImage(image: NetworkImage(_featuredProduct.imageUrl), fit: BoxFit.cover),
                           image: DecorationImage(image: AssetImage('assets/images/pulsera.png'), fit: BoxFit.contain),
@@ -203,16 +198,16 @@ class _StoreScreenState extends State<StoreScreen> {
                       _featuredProduct.name,
                       style: TextStyle(fontSize: 26.sp, fontWeight: FontWeight.w500, color: Colors.white),
                     ),
-                    
+
                     SizedBox(height: AppSpacing.xsH),
-                    
+
                     Text(
                       _featuredProduct.description,
                       style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w100, color: Colors.white),
                     ),
-                    
+
                     SizedBox(height: 12.h),
-                    
+
                     // Gallery images
                     Row(
                       spacing: 14.w,
@@ -224,7 +219,7 @@ class _StoreScreenState extends State<StoreScreen> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(color: Colors.white, width: 2.w),
-                                image: DecorationImage(image: NetworkImage(img), fit: BoxFit.cover),
+                                image: DecorationImage(image: CachedImageProvider(img), fit: BoxFit.cover),
                               ),
                             ),
                           )
@@ -246,7 +241,11 @@ class _StoreScreenState extends State<StoreScreen> {
         Container(
           margin: EdgeInsets.only(left: 20.w),
           alignment: Alignment.centerLeft,
-          child: Container(width: 28.w, height: 3.h, decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(10.r)),),
+          child: Container(
+            width: 28.w,
+            height: 3.h,
+            decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(10.r)),
+          ),
         ),
         SizedBox(
           height: 40.h,
@@ -281,6 +280,8 @@ class _StoreScreenState extends State<StoreScreen> {
   }
 
   Widget _buildNovedadesSection() {
+    final screen = MediaQuery.sizeOf(context);
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -289,14 +290,17 @@ class _StoreScreenState extends State<StoreScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Novedades', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600)),
-              
+              Text(
+                'Novedades',
+                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
+              ),
+
               Container(
                 width: AppSpacing.lgW,
                 height: AppSpacing.lgH,
                 decoration: BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
                 child: IconButton(
-                  icon: IconifyIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800,),
+                  icon: LocalIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800),
                   padding: EdgeInsets.zero,
                   onPressed: () => {},
                 ),
@@ -304,12 +308,13 @@ class _StoreScreenState extends State<StoreScreen> {
             ],
           ),
         ),
-        
+
         // Carousel banner
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
           child: Container(
-            height: 120,
+            width: screen.width.w,
+            height: 120.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.r),
               color: const Color(0xFF726D2D).withValues(alpha: 0.4),
@@ -318,14 +323,11 @@ class _StoreScreenState extends State<StoreScreen> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16.r),
-                  child: Image.network(
-                    'https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800',
-                    width: double.infinity,
+                  child: CachedImage(
+                    imageUrl: 'https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800',
+                    width: screen.width.sh,
                     height: 120.h,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(color: Colors.grey[300]);
-                    },
+                    errorWidget: Container(color: Colors.grey[300]),
                   ),
                 ),
                 Container(
@@ -370,13 +372,16 @@ class _StoreScreenState extends State<StoreScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Recomendaciones', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600)),
+              Text(
+                'Recomendaciones',
+                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
+              ),
               Container(
                 width: AppSpacing.lgW,
                 height: AppSpacing.lgH,
                 decoration: BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
                 child: IconButton(
-                  icon: IconifyIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800,),
+                  icon: LocalIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800),
                   padding: EdgeInsets.zero,
                   onPressed: () => {},
                 ),
@@ -384,7 +389,7 @@ class _StoreScreenState extends State<StoreScreen> {
             ],
           ),
         ),
-        
+
         // Product grid
         Padding(
           padding: EdgeInsets.only(left: 20.w),

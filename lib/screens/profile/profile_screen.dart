@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/local_icon.dart';
+import '../../widgets/cached_image.dart';
 import '../../theme/app_typography.dart';
 import '../../models/user_profile_model.dart';
 
@@ -68,10 +69,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    IconifyIcon(icon: 'weui:location-outlined', size: 16.sp, color: Colors.black),
-                    
+                    LocalIcon(icon: 'weui:location-outlined', size: 16.sp, color: Colors.black),
+
                     SizedBox(width: 4.w),
-                    
+
                     Text(
                       _user.location,
                       style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: Colors.black),
@@ -105,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
 
               SizedBox(height: 32.h),
-        
+
               // Habilidades
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -123,7 +124,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       .map(
                         (skill) => Container(
                           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                          decoration: BoxDecoration(color: AppColors.grey200, borderRadius: BorderRadius.circular(12.r)),
+                          decoration: BoxDecoration(
+                            color: AppColors.grey200,
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
                           child: Text(
                             skill,
                             style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w300, color: Colors.black),
@@ -182,7 +186,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             decoration: BoxDecoration(
               color: AppColors.grey200,
               image: _user.coverImageUrl != null
-                  ? DecorationImage(image: NetworkImage(_user.coverImageUrl!), fit: BoxFit.cover)
+                  ? DecorationImage(image: CachedImageProvider(_user.coverImageUrl!), fit: BoxFit.cover)
                   : null,
             ),
           ),
@@ -209,7 +213,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         alignment: Alignment.center,
                         decoration: BoxDecoration(color: Color.fromARGB(128, 245, 245, 245), shape: BoxShape.circle),
                         padding: EdgeInsets.all(1.w),
-                        child: IconifyIcon(icon: 'clarity:edit-line', size: 20.sp, color: Colors.black),
+                        child: LocalIcon(icon: 'clarity:edit-line', size: 20.sp, color: Colors.black),
                       ),
                     ),
                   ],
@@ -230,13 +234,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: _user.profileImageUrl != null
-                      ? DecorationImage(image: NetworkImage(_user.profileImageUrl!), fit: BoxFit.cover)
+                      ? DecorationImage(image: CachedImageProvider(_user.profileImageUrl!), fit: BoxFit.cover)
                       : null,
                   color: _user.profileImageUrl == null ? AppColors.grey300 : null,
                 ),
-                child: _user.profileImageUrl == null
-                    ? Icon(Icons.person, size: 60.sp, color: AppColors.grey600)
-                    : null,
+                child: _user.profileImageUrl == null ? Icon(Icons.person, size: 60.sp, color: AppColors.grey600) : null,
               ),
             ),
           ),

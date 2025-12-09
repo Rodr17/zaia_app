@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconify_design/iconify_design.dart';
 import '../../../theme/app_colors.dart';
+import '../../../widgets/local_icon.dart';
+import '../../../widgets/cached_image.dart';
 import '../../../theme/app_typography.dart';
 
 class TrendingCategory extends StatelessWidget {
@@ -44,7 +45,7 @@ class TrendingCategory extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
-                  image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(urlImage)),
+                  image: DecorationImage(fit: BoxFit.cover, image: CachedImageProvider(urlImage)),
                 ),
               ),
             ),
@@ -57,11 +58,14 @@ class TrendingCategory extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name, style: AppTypography.titleMedium.copyWith(letterSpacing: 0.64, fontWeight: FontWeight.w500)),
+                  Text(
+                    name,
+                    style: AppTypography.titleMedium.copyWith(letterSpacing: 0.64, fontWeight: FontWeight.w500),
+                  ),
                   SizedBox(height: 6.h),
                   Row(
                     children: [
-                      IconifyIcon(icon: 'iconamoon:news-thin', color: AppColors.grey800, size: 26.sp),
+                      LocalIcon(icon: 'iconamoon:news-thin', color: AppColors.grey800, size: 26.sp),
                       SizedBox(width: 4.w),
                       Text('$newsCount noticias', style: AppTypography.bodyLarge),
                     ],

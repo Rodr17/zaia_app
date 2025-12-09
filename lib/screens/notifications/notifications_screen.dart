@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/local_icon.dart';
 import '../../theme/app_typography.dart';
 import '../../theme/app_constants.dart';
 import '../../models/notification_model.dart';
@@ -138,7 +138,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         color: AppColors.grey300.withValues(alpha: .4),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppBorderRadius.circle)),
                       ),
-                      child: const IconifyIcon(icon: 'icon-park-outline:left'),
+                      child: const LocalIcon(icon: 'icon-park-outline:left'),
                     ),
                   ),
                   Text('Notificaciones', style: AppTypography.displaySmall),
@@ -154,7 +154,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               child: (_newNotifications.isEmpty && _previousNotifications.isEmpty)
                   ? _buildEmptyState()
                   : ListView(
-                      padding: EdgeInsets.only(top: AppSpacing.xsH, bottom: AppSpacing.mdH, left: AppSpacing.xsW, right: AppSpacing.xsW),
+                      padding: EdgeInsets.only(
+                        top: AppSpacing.xsH,
+                        bottom: AppSpacing.mdH,
+                        left: AppSpacing.xsW,
+                        right: AppSpacing.xsW,
+                      ),
                       children: [
                         // Sección "Nuevas"
                         if (_newNotifications.isNotEmpty) ...[
@@ -165,10 +170,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                               top: AppSpacing.smH,
                               bottom: 4,
                             ),
-                            child: Text(
-                              'Nuevas',
-                              style: AppTypography.titleMedium,
-                            ),
+                            child: Text('Nuevas', style: AppTypography.titleMedium),
                           ),
                           ListView.builder(
                             shrinkWrap: true,
@@ -193,10 +195,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                               top: AppSpacing.lgH,
                               bottom: 4,
                             ),
-                            child: Text(
-                              'Anteriores',
-                              style: AppTypography.titleMedium,
-                            ),
+                            child: Text('Anteriores', style: AppTypography.titleMedium),
                           ),
                           ListView.builder(
                             shrinkWrap: true,
@@ -231,15 +230,15 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             height: 120.h,
             padding: EdgeInsets.all(AppSpacing.mdW),
             decoration: const BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
-            child: IconifyIcon(icon: 'iconamoon:notification-thin', size: 60.sp, color: AppColors.grey400),
+            child: LocalIcon(icon: 'iconamoon:notification-thin', size: 60.sp, color: AppColors.grey400),
           ),
-          
+
           SizedBox(height: AppSpacing.lgH),
-          
+
           Text('Sin notificaciones', style: AppTypography.titleLarge, textAlign: TextAlign.center),
-          
+
           SizedBox(height: AppSpacing.smH),
-          
+
           Text(
             'Todas tus notificaciones aparecerán aquí',
             style: AppTypography.bodyMedium.copyWith(color: AppColors.grey600),

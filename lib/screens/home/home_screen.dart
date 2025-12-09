@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/local_icon.dart';
 import '../../theme/app_typography.dart';
 import '../../theme/app_constants.dart';
 import '../../widgets/common_app_bar.dart';
@@ -132,8 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildCategories() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15.h),
-      // color: AppColors.accent,
+      margin: EdgeInsets.symmetric(vertical: AppSpacing.mdH),
       child: Column(
         children: [
           Container(
@@ -147,7 +146,6 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             height: 20.h,
             margin: EdgeInsets.symmetric(vertical: 10.h),
-            // padding: EdgeInsets.symmetric(),
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               separatorBuilder: (context, index) => SizedBox(width: 20.w),
@@ -186,40 +184,37 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildInspirationCards() {
-    return Column(
-      children: [
-        SizedBox(
-          height: 300.h,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(right: AppSpacing.mdW),
-            itemCount: _inspirationCards[_categories[_selectedCategoryIndex]]?.length ?? 0,
-            separatorBuilder: (context, index) => SizedBox(width: AppSpacing.mdW),
-            itemBuilder: (context, index) {
-              final card = _inspirationCards[_categories[_selectedCategoryIndex]]![index];
-              final category = _categories[_selectedCategoryIndex];
-              return InspirationCard(
-                imageUrl: card['imageUrl']!,
-                text: card['text']!,
-                heroTag: 'card_${category}_$index',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CardDetailScreen(
-                        imageUrl: card['imageUrl']!,
-                        text: card['text']!,
-                        category: category,
-                        cardIndex: index,
-                      ),
-                    ),
-                  );
-                },
+    return Container(
+      height: 300.h,
+      margin: EdgeInsets.only(bottom: 26.h),
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.only(right: AppSpacing.mdW),
+        itemCount: _inspirationCards[_categories[_selectedCategoryIndex]]?.length ?? 0,
+        separatorBuilder: (context, index) => SizedBox(width: AppSpacing.mdW),
+        itemBuilder: (context, index) {
+          final card = _inspirationCards[_categories[_selectedCategoryIndex]]![index];
+          final category = _categories[_selectedCategoryIndex];
+          return InspirationCard(
+            imageUrl: card['imageUrl']!,
+            text: card['text']!,
+            heroTag: 'card_${category}_$index',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CardDetailScreen(
+                    imageUrl: card['imageUrl']!,
+                    text: card['text']!,
+                    category: category,
+                    cardIndex: index,
+                  ),
+                ),
               );
             },
-          ),
-        ),
-      ],
+          );
+        },
+      ),
     );
   }
 
@@ -230,28 +225,29 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('En Tendencia', style: AppTypography.titleLarge),
-            
+            Text('En Tendencia', style: AppTypography.titleLarge.copyWith(fontSize: 16.sp)),
+
             Container(
               width: AppSpacing.xlW,
               height: AppSpacing.xlH,
+              margin: EdgeInsets.only(right: AppSpacing.screenPaddingW),
               decoration: BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
               child: IconButton(
-                icon: IconifyIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800, size: 32.sp),
+                icon: LocalIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800, size: 32.sp),
                 padding: EdgeInsets.zero,
                 onPressed: () => {},
               ),
             ),
           ],
         ),
-        
+
         SizedBox(height: AppSpacing.mdH),
-        
+
         SizedBox(
           height: 80.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: AppSpacing.mdW),
+            padding: EdgeInsets.only(right: AppSpacing.mdW),
             itemCount: _trendingCategories.length,
             separatorBuilder: (context, index) => SizedBox(width: 18.w),
             itemBuilder: (context, index) {
@@ -271,31 +267,35 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildNewsSection() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSpacing.mdW),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Novedades', style: AppTypography.titleLarge),
-              Container(
-                width: AppSpacing.xlW,
-                height: AppSpacing.xlH,
-                decoration: BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
-                child: IconButton(
-                  icon: IconifyIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800, size: 32.sp),
-                  padding: EdgeInsets.zero,
-                  onPressed: () => {},
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Novedades', style: AppTypography.titleLarge.copyWith(fontSize: 16.sp)),
+
+            Container(
+              width: AppSpacing.xlW,
+              height: AppSpacing.xlH,
+              margin: EdgeInsets.only(right: AppSpacing.screenPaddingW),
+              decoration: BoxDecoration(color: AppColors.grey200, shape: BoxShape.circle),
+              child: IconButton(
+                icon: LocalIcon(icon: 'majesticons:more-menu-line', color: AppColors.grey800, size: 32.sp),
+                padding: EdgeInsets.zero,
+                onPressed: () => {},
               ),
-            ],
-          ),
-          SizedBox(height: AppSpacing.mdH),
-          const PromotionalBanner(),
-        ],
-      ),
+            ),
+          ],
+        ),
+
+        SizedBox(height: AppSpacing.mdH),
+
+        Padding(
+          padding: EdgeInsets.only(right: AppSpacing.screenPaddingW),
+          child: const PromotionalBanner(),
+        ),
+      ],
     );
   }
 }

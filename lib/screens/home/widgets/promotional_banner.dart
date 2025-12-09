@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../theme/app_typography.dart';
 import '../../../theme/app_constants.dart';
+import '../../../widgets/cached_image.dart';
 
 class PromotionalBanner extends StatelessWidget {
   const PromotionalBanner({super.key});
@@ -12,8 +13,8 @@ class PromotionalBanner extends StatelessWidget {
       height: 120.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppBorderRadius.lg),
-        image: const DecorationImage(
-          image: NetworkImage('https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800'),
+        image: DecorationImage(
+          image: CachedImageProvider('https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800'),
           fit: BoxFit.cover,
         ),
       ),
@@ -31,9 +32,9 @@ class PromotionalBanner extends StatelessWidget {
         child: Text(
           '¿Estás listo para nuestros\nnuevos productos?',
           style: AppTypography.titleMedium.copyWith(
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
             color: Colors.white,
-            fontSize: 25.sp,
+            fontSize: 20.sp,
             letterSpacing: 2.0,
             height: 1,
           ),

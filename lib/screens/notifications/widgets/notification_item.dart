@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconify_design/iconify_design.dart';
 import '../../../theme/app_colors.dart';
+import '../../../widgets/local_icon.dart';
+import '../../../widgets/cached_image.dart';
 import '../../../theme/app_constants.dart';
 import '../../../models/notification_model.dart';
 
@@ -21,19 +22,17 @@ class NotificationItem extends StatelessWidget {
           // Avatar circular con imagen
           ClipOval(
             child: notification.imageUrl != null
-                ? Image.network(
-                    notification.imageUrl!,
+                ? CachedImage(
+                    imageUrl: notification.imageUrl!,
                     width: AppSpacing.xlW,
                     height: AppSpacing.xlH,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        width: AppSpacing.xlW,
-                        height: AppSpacing.xlH,
-                        color: AppColors.grey300,
-                        child: Icon(Icons.person, size: 18.sp, color: AppColors.grey600),
-                      );
-                    },
+                    errorWidget: Container(
+                      width: AppSpacing.xlW,
+                      height: AppSpacing.xlH,
+                      color: AppColors.grey300,
+                      child: Icon(Icons.person, size: 18.sp, color: AppColors.grey600),
+                    ),
                   )
                 : Container(
                     width: AppSpacing.xlW,
@@ -57,9 +56,9 @@ class NotificationItem extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                
+
                 SizedBox(height: 2.h),
-                
+
                 Text(
                   _formatTimestamp(notification.timestamp),
                   style: TextStyle(fontSize: 14.sp, color: Colors.black.withValues(alpha: 0.4)),
@@ -70,7 +69,7 @@ class NotificationItem extends StatelessWidget {
 
           // Botón de eliminar
           IconButton(
-            icon: IconifyIcon(icon: 'iconoir:cancel', size: 20.sp),
+            icon: LocalIcon(icon: 'iconoir:cancel', size: 20.sp),
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(),
             onPressed: onDismiss,

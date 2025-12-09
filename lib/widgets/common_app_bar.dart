@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconify_design/iconify_design.dart';
 import '../theme/app_colors.dart';
+import 'local_icon.dart';
 import '../theme/app_typography.dart';
 import '../theme/app_constants.dart';
 import '../screens/search/search_screen.dart';
@@ -33,22 +33,22 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       actionsPadding: EdgeInsets.only(right: AppSpacing.screenPaddingW),
       actions: [
         Row(
-          spacing: 9.r,
+          spacing: 9.w,
           children: [
             if (showSearchButton)
               IconButton(
                 padding: EdgeInsets.all(AppSpacing.smW),
-                icon: const IconifyIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.textPrimary),
+                icon: const LocalIcon(icon: 'material-symbols-light:search-rounded', color: AppColors.textPrimary),
                 style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
                 },
               ),
-        
+    
             if (showNotificationButton)
               IconButton(
                 padding: EdgeInsets.all(AppSpacing.smW),
-                icon: const IconifyIcon(icon: 'iconamoon:notification-thin', color: AppColors.textPrimary),
+                icon: const LocalIcon(icon: 'iconamoon:notification-thin', color: AppColors.textPrimary),
                 style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.grey200)),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationsScreen()));

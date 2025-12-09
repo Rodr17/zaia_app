@@ -2,8 +2,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iconify_design/iconify_design.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/local_icon.dart';
+import '../../widgets/cached_image.dart';
 import '../../theme/app_typography.dart';
 import '../../theme/app_constants.dart';
 
@@ -120,20 +121,23 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                   ],
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60.r), bottomRight: Radius.circular(60.r)),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(60.r),
+                    bottomRight: Radius.circular(60.r),
+                  ),
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
                       // Imagen
-                      Image.network(
-                        widget.imageUrl,
+                      CachedImage(
+                        imageUrl: widget.imageUrl,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            color: AppColors.grey300,
-                            child: Center(child: Icon(Icons.image, size: 48.sp, color: AppColors.grey500)),
-                          );
-                        },
+                        errorWidget: Container(
+                          color: AppColors.grey300,
+                          child: Center(
+                            child: Icon(Icons.image, size: 48.sp, color: AppColors.grey500),
+                          ),
+                        ),
                       ),
                       // Texto con glassmorphism
                       Positioned(
@@ -221,7 +225,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
               if (_isExpanded) {
                 // Modo expandido: imagen fija arriba, contenido scrolleable abajo
                 return Column(
-                  children: [ 
+                  children: [
                     // Espacio fijo para la imagen de fondo
                     SizedBox(height: size.height * 0.40),
                     // Contenido scrolleable
@@ -329,15 +333,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                               fit: StackFit.expand,
                               children: [
                                 // Imagen
-                                Image.network(
-                                  widget.imageUrl,
+                                CachedImage(
+                                  imageUrl: widget.imageUrl,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Container(
-                                      color: AppColors.grey300,
-                                      child: Center(child: Icon(Icons.image, size: 48.sp, color: AppColors.grey500)),
-                                    );
-                                  },
+                                  errorWidget: Container(
+                                    color: AppColors.grey300,
+                                    child: Center(
+                                      child: Icon(Icons.image, size: 48.sp, color: AppColors.grey500),
+                                    ),
+                                  ),
                                 ),
                                 // Gradiente oscuro
                                 Container(
@@ -392,7 +396,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> with SingleTickerPr
                     // Flecha indicadora
                     GestureDetector(
                       onTap: _toggleExpanded,
-                      child: IconifyIcon(icon: 'icon-park-outline:up', size: 40.sp, color: AppColors.surface),
+                      child: LocalIcon(icon: 'icon-park-outline:up', size: 40.sp, color: AppColors.surface),
                     ),
                   ],
                 ),

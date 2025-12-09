@@ -7,7 +7,6 @@ import '../screens/news/news_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/home/widgets/bottom_navigation.dart';
 
-/// Configuración de rutas de la aplicación usando GoRouter
 class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: '/',
@@ -15,24 +14,13 @@ class AppRouter {
       ShellRoute(
         builder: (context, state, child) {
           // Determinar el índice actual basado en la ruta
-          final location = state.uri.path;
-          int currentIndex = 0;
+          final location = state.topRoute!.name;
 
-          if (location == '/') {
-            currentIndex = 0;
-          } else if (location.startsWith('/store')) {
-            currentIndex = 1;
-          } else if (location.startsWith('/faq')) {
-            currentIndex = 2;
-          } else if (location.startsWith('/news')) {
-            currentIndex = 3;
-          } else if (location.startsWith('/profile')) {
-            currentIndex = 4;
-          }
+          final routesNavigation = {'home': 0, 'store': 1, 'faq': 2, 'news': 3, 'profile': 4};
 
           return Scaffold(
             body: child,
-            bottomNavigationBar: ZaiaBottomNavigation(currentIndex: currentIndex),
+            bottomNavigationBar: ZaiaBottomNavigation(currentIndex: routesNavigation[location]!),
           );
         },
         routes: [

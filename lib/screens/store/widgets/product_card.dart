@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconify_design/iconify_design.dart';
 import 'package:zaia_app/theme/app_constants.dart';
+import '../../../widgets/local_icon.dart';
 import '../../../models/product_model.dart';
 import '../../../theme/app_colors.dart';
 
@@ -42,13 +42,7 @@ class ProductCard extends StatelessWidget {
                       height: 75.h,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xFFFFC439),
-                            blurRadius: 30,
-                            spreadRadius: 5,
-                          ),
-                        ],
+                        boxShadow: [BoxShadow(color: const Color(0xFFFFC439), blurRadius: 30, spreadRadius: 5)],
                       ),
                     ),
                   ),
@@ -77,13 +71,13 @@ class ProductCard extends StatelessWidget {
                       width: AppSpacing.mdW,
                       height: AppSpacing.mdH,
                       decoration: const BoxDecoration(color: Colors.transparent),
-                      child: IconifyIcon(icon: 'mynaui:plus', size: 16.sp, color: Colors.black),
+                      child: LocalIcon(icon: 'mynaui:plus', size: 16.sp, color: Colors.black),
                     ),
                   ),
                 ),
               ],
             ),
-            
+
             // Product name
             Text(
               product.name,

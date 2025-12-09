@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../models/news_model.dart';
 import '../../../theme/app_colors.dart';
+import '../../../widgets/cached_image.dart';
 import '../../../theme/app_constants.dart';
 
 class TrendingNewsCard extends StatelessWidget {
@@ -29,19 +30,17 @@ class TrendingNewsCard extends StatelessWidget {
             // Image
             ClipRRect(
               borderRadius: BorderRadius.horizontal(left: Radius.circular(AppBorderRadius.lg)),
-              child: Image.network(
-                news.imageUrl,
+              child: CachedImage(
+                imageUrl: news.imageUrl,
                 width: 80.w,
                 height: 80.h,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    width: 80.w,
-                    height: 80.h,
-                    color: AppColors.grey200,
-                    child: const Icon(Icons.image_not_supported),
-                  );
-                },
+                errorWidget: Container(
+                  width: 80.w,
+                  height: 80.h,
+                  color: AppColors.grey200,
+                  child: const Icon(Icons.image_not_supported),
+                ),
               ),
             ),
             // Content
@@ -71,11 +70,7 @@ class TrendingNewsCard extends StatelessWidget {
                       alignment: Alignment.bottomRight,
                       child: Text(
                         news.date,
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.w200,
-                          color: AppColors.textSecondary,
-                        ),
+                        style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w200, color: AppColors.textSecondary),
                       ),
                     ),
                   ],
